@@ -3,4 +3,5 @@ rootProject.name = 'toy-exchange'
 //include ':springBootBooter'
 //project(':springBootBooter').projectDir = new File('./booter/springBootBooter')
 include 'booter:springBoot'
-include 'feature:user'
+include 'feature:user:domain'
+include 'feature:user:infrastructure'
