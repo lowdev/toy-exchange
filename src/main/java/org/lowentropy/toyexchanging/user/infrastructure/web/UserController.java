@@ -17,6 +17,10 @@ import static org.springframework.http.ResponseEntity.ok;
 @RestController("user")
 public class UserController {
 
+    /**
+     * Todo - Should do i pass by domain to getUser
+     * or use directly repository here.
+     */
     private GetUserUseCase getUserUseCase;
 
     public UserController(GetUserUseCase getUserUseCase) {

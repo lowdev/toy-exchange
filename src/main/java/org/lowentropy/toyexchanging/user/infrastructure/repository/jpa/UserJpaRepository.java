@@ -1,4 +1,4 @@
-package org.lowentropy.toyexchanging.user.infrastructure;
+package org.lowentropy.toyexchanging.user.infrastructure.repository.jpa;
 
 import org.lowentropy.toyexchanging.user.domain.model.User;
 import org.lowentropy.toyexchanging.user.domain.model.UserId;
