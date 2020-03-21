@@ -1,0 +1,16 @@
+allprojects {
+    apply plugin: 'java'
+
+	group 'org.lowentropy.toyexchange'
+	version '1.0-SNAPSHOT'
+	
+	sourceCompatibility = 1.11
+
+	repositories {
+		mavenCentral()
+	}
+
+	dependencies {
+		testImplementation group: 'junit', name: 'junit', version: '4.12'
+	}
+}
