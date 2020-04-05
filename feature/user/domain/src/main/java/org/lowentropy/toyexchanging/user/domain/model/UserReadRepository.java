@@ -4,4 +4,6 @@ import java.util.Optional;
 
 public interface UserReadRepository {
     Optional<User> findById(UserId userId);
+
+    void save(User userA);
 }

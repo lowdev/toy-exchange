@@ -11,7 +11,7 @@
 
 ## About
 
-This project help me to understand different techniques such as
+This project help me to practise different techniques such as
 - Architecture hexagonal / onion architecture
 - DDD
 - Event sourcing

@@ -1,17 +1,18 @@
 package org.lowentropy.toyexchanging.user.domain.application.exchange;
 
+import org.lowentropy.toyexchanging.user.domain.model.ToyId;
 import org.lowentropy.toyexchanging.user.domain.model.UserId;
 
 public class ExchangeCommand {
     private ExchangeUseCase exchangeUseCase;
 
     private UserId userAId;
-    private long toyA;
+    private ToyId toyA;
 
     private UserId userBId;
-    private long toyB;
+    private ToyId toyB;
 
-    public ExchangeCommand(ExchangeUseCase exchangeUseCase, UserId userAId, long toyA, UserId userBId, long toyB) {
+    public ExchangeCommand(ExchangeUseCase exchangeUseCase, UserId userAId, ToyId toyA, UserId userBId, ToyId toyB) {
         this.exchangeUseCase = exchangeUseCase;
         this.userAId = userAId;
         this.toyA = toyA;
