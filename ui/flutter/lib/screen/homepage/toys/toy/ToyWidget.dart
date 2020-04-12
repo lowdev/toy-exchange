@@ -29,12 +29,12 @@ class ToyWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      new Text("country",
+                      new Text(this.toy.numberOfPieces.toString() + " pieces",
                           style: new TextStyle(
-                              fontSize: 13.0, fontWeight: FontWeight.normal)),
-                      new Text('Population: ',
-                          style: new TextStyle(
-                              fontSize: 11.0, fontWeight: FontWeight.normal)),
+                              fontSize: 13.0,
+                              fontWeight: FontWeight.normal
+                          )
+                      ),
                     ]
                 ),
                 onLongPress: () => showSnackBar(context, toy),
