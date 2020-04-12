@@ -1,7 +1,7 @@
 
 class Toy {
   final String name;
-  final String image;
+  final List<String> images;
 
-  Toy({this.name, this.image});
+  Toy({this.name, this.images});
 }

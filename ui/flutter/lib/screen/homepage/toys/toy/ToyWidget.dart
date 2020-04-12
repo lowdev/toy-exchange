@@ -16,7 +16,7 @@ class ToyWidget extends StatelessWidget {
             children: <Widget>[
               new ListTile(
                 leading: new Image.network(
-                  toy.image,
+                  toy.images.first,
                   fit: BoxFit.cover,
                   width: 100.0,
                 ),
@@ -35,7 +35,8 @@ class ToyWidget extends StatelessWidget {
                       new Text('Population: ',
                           style: new TextStyle(
                               fontSize: 11.0, fontWeight: FontWeight.normal)),
-                    ]),
+                    ]
+                ),
                 onLongPress: () => showSnackBar(context, toy),
                 onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ToyDetailWidget(toy)))
               )

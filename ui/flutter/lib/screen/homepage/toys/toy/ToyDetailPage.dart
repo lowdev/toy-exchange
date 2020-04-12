@@ -1,5 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'model/Toy.dart';
+import 'ToyDescription.dart';
 
 class ToyDetailWidget extends StatefulWidget {
 
@@ -19,11 +22,9 @@ class ToyDetailWidgetState extends State<ToyDetailWidget> {
 
   Widget getScaffold() {
     return new Scaffold(
-      backgroundColor: Colors.blue,
+      backgroundColor: CupertinoColors.lightBackgroundGray,
       appBar: createBar(),
-      body: new Padding(
-        padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
-        child: createBody(context)),
+      body: createBody(context),
       bottomNavigationBar: createBottomNavigationBar(),
     );
   }
@@ -41,13 +42,58 @@ class ToyDetailWidgetState extends State<ToyDetailWidget> {
   }
 
   Widget createBody(BuildContext context) {
-    return Center(
+    return Container(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text(widget.toy.name, style: TextStyle(fontSize: 36.0, color: Colors.black))
-        ],
+            new Card(
+                child: createImagePart(context)
+            ),
+            Expanded(
+                child: new Card(
+                    child: createDescriptionPart(context)
+                )
+            )
+        ]
       )
+    );
+  }
+
+  Widget createImagePart(BuildContext context) {
+    return CarouselSlider(
+      items: widget.toy.images.map((image) {
+        return Builder(
+          builder: (BuildContext context) {
+            return Container(
+                width: MediaQuery.of(context).size.width,
+                margin: EdgeInsets.symmetric(horizontal: 5.0),
+                decoration: BoxDecoration(
+                    color: Colors.amber
+                ),
+                child: new Image.network(
+                  image,
+                  fit: BoxFit.cover,
+                  width: 100.0,
+                )
+            );
+          },
+        );
+      }).toList(),
+    );
+  }
+
+  Widget createDescriptionPart(BuildContext context) {
+    return new ListTile(
+      title: Text("Description"),
+      subtitle: new Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            new Text("country",
+                style: new TextStyle(fontWeight: FontWeight.normal)),
+            new Text('Population: ',
+                style: new TextStyle( fontWeight: FontWeight.normal)),
+          ]
+      ),
     );
   }
 
@@ -57,7 +103,7 @@ class ToyDetailWidgetState extends State<ToyDetailWidget> {
       fixedColor: Colors.teal,
       items: [
         BottomNavigationBarItem(
-          title: Text("Detail"),
+          title: Text("Description"),
           icon: Icon(Icons.search),
         ),
         BottomNavigationBarItem(
