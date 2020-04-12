@@ -36,7 +36,7 @@ class LoginWidget extends StatelessWidget {
                 color: Colors.yellow,
                 child: Text('ENTER'),
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/toys');
+                  Navigator.pushReplacementNamed(context, '/discover');
                 },
               )
             ],

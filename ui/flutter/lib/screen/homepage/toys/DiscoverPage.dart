@@ -5,13 +5,12 @@ import 'package:toyexchange/screen/homepage/toys/toy/model/Toy.dart';
 
 import 'model/ViewChoice.dart';
 
-
-class ToysPage extends StatefulWidget {
+class DiscoverPage extends StatefulWidget {
   @override
-  ToysPageState createState() => ToysPageState();
+  DiscoverPageState createState() => DiscoverPageState();
 }
 
-class ToysPageState extends State<ToysPage> {
+class DiscoverPageState extends State<DiscoverPage> {
   ViewChoice selectedViewChoice = ViewChoice.LIST_VIEW;
 
   void select(ViewChoice choice) {
@@ -28,14 +27,15 @@ class ToysPageState extends State<ToysPage> {
         appBar: getBar(),
         body: new Padding(
             padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
-            child: getBody(context))
+            child: getBody(context)),
+        bottomNavigationBar: createBottomNavigationBar(),
     );
   }
 
   AppBar getBar() {
     return new AppBar(
       title: new Text(
-        "Toys",
+        "Discover",
         style: new TextStyle(
             fontSize: 18.0,
             fontWeight: FontWeight.bold,
@@ -47,7 +47,11 @@ class ToysPageState extends State<ToysPage> {
 
   List<Widget> getActions() {
     return [
+      IconButton(
+        icon: Icon(Icons.search),
+      ),
       PopupMenuButton<ViewChoice>(
+        icon: Icon(Icons.tune),
         onSelected: select,
         itemBuilder: (BuildContext context) {
           return ViewChoice.allViewChoices().map<PopupMenuEntry<ViewChoice>>((ViewChoice choice) {
@@ -69,6 +73,28 @@ class ToysPageState extends State<ToysPage> {
       itemCount: toys.length,
       itemBuilder: (context, index) => new ToyWidget(toy: toys[index]),
       padding: EdgeInsets.all(0.0),
+    );
+  }
+
+  Widget createBottomNavigationBar() {
+    return BottomNavigationBar(
+      currentIndex: 0,
+      items: [
+        BottomNavigationBarItem(
+          title: Text("Discover"),
+          icon: Icon(Icons.search),
+        ),
+        BottomNavigationBarItem(
+          title: Text("Add"),
+          icon: Icon(Icons.add_box),
+        ),
+        BottomNavigationBarItem(
+          title: Text("My profile"),
+          icon: Icon(Icons.account_box),
+        ),
+      ],
+      onTap: (int index){
+      },
     );
   }
 }
