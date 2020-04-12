@@ -50,7 +50,10 @@ class ToyDetailWidgetState extends State<ToyDetailWidget> {
             ),
             Expanded(
                 child: new Card(
-                    child: createDescriptionPart(context)
+                    child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: new ToyDescription(widget.toy.description)
+                    )
                 )
             )
         ]
@@ -100,7 +103,6 @@ class ToyDetailWidgetState extends State<ToyDetailWidget> {
   Widget createBottomNavigationBar() {
     return BottomNavigationBar(
       currentIndex: 0,
-      fixedColor: Colors.teal,
       items: [
         BottomNavigationBarItem(
           title: Text("Description"),
