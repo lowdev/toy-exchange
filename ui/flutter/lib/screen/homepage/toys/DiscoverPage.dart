@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toyexchange/screen/homepage/toys/model/Toys.dart';
-import 'package:toyexchange/screen/homepage/toys/toy/ToyWidget.dart';
+import 'package:toyexchange/screen/homepage/toys/toy/ListToyWidget.dart';
 import 'package:toyexchange/screen/homepage/toys/toy/model/Toy.dart';
 
 import 'model/ViewChoice.dart';
@@ -71,7 +71,7 @@ class DiscoverPageState extends State<DiscoverPage> {
   Widget getBody(BuildContext context) {
     return ListView.builder(
       itemCount: toys.length,
-      itemBuilder: (context, index) => new ToyWidget(toy: toys[index]),
+      itemBuilder: (context, index) => new ListToyWidget(toy: toys[index]),
       padding: EdgeInsets.all(0.0),
     );
   }

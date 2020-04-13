@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:toyexchange/screen/homepage/toys/toy/ToyDetailPage.dart';
 import 'model/Toy.dart';
 
-class ToyWidget extends StatelessWidget {
+class ListToyWidget extends StatelessWidget {
 
   final Toy toy;
 
-  ToyWidget({this.toy}) {}
+  ListToyWidget({this.toy}) {}
 
   @override
   Widget build(BuildContext context) {
