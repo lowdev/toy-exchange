@@ -105,7 +105,7 @@ class ToyDetailPageState extends State<ToyDetailPage> {
       items: [
         BottomNavigationBarItem(
           title: Text("Description"),
-          icon: Icon(Icons.search),
+          icon: Icon(Icons.description),
         ),
         BottomNavigationBarItem(
           title: Text("Ask for Exchange"),
