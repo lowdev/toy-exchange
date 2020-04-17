@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'model/Toy.dart';
@@ -22,7 +21,7 @@ class ToyDetailPageState extends State<ToyDetailPage> {
 
   Widget getScaffold() {
     return new Scaffold(
-      backgroundColor: CupertinoColors.lightBackgroundGray,
+      backgroundColor: Colors.white30,
       appBar: createBar(),
       body: createBody(context),
       bottomNavigationBar: createBottomNavigationBar(),
