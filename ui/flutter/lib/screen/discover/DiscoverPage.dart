@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:toyexchange/screen/utils/Screens.dart';
-import 'package:toyexchange/screen/homepage/toys/model/Toys.dart';
-import 'package:toyexchange/screen/homepage/toys/toy/GridToyWidget.dart';
-import 'package:toyexchange/screen/homepage/toys/toy/ListToyWidget.dart';
-import 'package:toyexchange/screen/homepage/toys/toy/model/Toy.dart';
+import 'package:toyexchange/screen/discover/model/Toys.dart';
+import 'package:toyexchange/screen/discover/toy/GridToyWidget.dart';
+import 'package:toyexchange/screen/discover/toy/ListToyWidget.dart';
+import 'package:toyexchange/screen/discover/toy/model/Toy.dart';
 
 import 'model/ViewChoice.dart';
 

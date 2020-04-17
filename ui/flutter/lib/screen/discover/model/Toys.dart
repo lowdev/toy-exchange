@@ -1,4 +1,4 @@
-import 'package:toyexchange/screen/homepage/toys/toy/model/Toy.dart';
+import 'package:toyexchange/screen/discover/toy/model/Toy.dart';
 
 class Toys {
   static List<Toy> allToys()  {

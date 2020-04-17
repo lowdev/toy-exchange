@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toyexchange/common/theme.dart';
-import 'package:toyexchange/screen/homepage/toys/DiscoverPage.dart';
+import 'package:toyexchange/screen/discover/DiscoverPage.dart';
 import 'package:toyexchange/screen/login/LoginWidget.dart';
 
 void main() {
