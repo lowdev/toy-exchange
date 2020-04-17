@@ -5,7 +5,7 @@ import 'package:toyexchange/screen/discover/toy/GridToyWidget.dart';
 import 'package:toyexchange/screen/discover/toy/ListToyWidget.dart';
 import 'package:toyexchange/screen/discover/toy/model/Toy.dart';
 
-import 'model/ViewChoice.dart';
+import 'model/LayoutChoice.dart';
 
 class DiscoverPage extends StatefulWidget {
   @override
@@ -13,11 +13,12 @@ class DiscoverPage extends StatefulWidget {
 }
 
 class DiscoverPageState extends State<DiscoverPage> {
-  ViewChoice selectedViewChoice = ViewChoice.LIST_VIEW;
+  LayoutChoice selectedLayoutChoice = LayoutChoice.LIST_VIEW;
+  int _selectedIndex = 0;
 
-  void select(ViewChoice choice) {
+  void select(LayoutChoice choice) {
     setState(() {
-      selectedViewChoice = choice;
+      selectedLayoutChoice = choice;
     });
   }
 
@@ -52,12 +53,12 @@ class DiscoverPageState extends State<DiscoverPage> {
       IconButton(
         icon: Icon(Icons.search),
       ),
-      PopupMenuButton<ViewChoice>(
+      PopupMenuButton<LayoutChoice>(
         icon: Icon(Icons.tune),
         onSelected: select,
         itemBuilder: (BuildContext context) {
-          return ViewChoice.allViewChoices().map<PopupMenuEntry<ViewChoice>>((ViewChoice choice) {
-            return PopupMenuItem<ViewChoice>(
+          return LayoutChoice.allLayoutChoices().map<PopupMenuEntry<LayoutChoice>>((LayoutChoice choice) {
+            return PopupMenuItem<LayoutChoice>(
               value: choice,
               child: ListTile(
                 leading: Icon(choice.icon),
@@ -75,7 +76,7 @@ class DiscoverPageState extends State<DiscoverPage> {
       return GridToyWidget(toys: this.toys);
     }
 
-    if (this.selectedViewChoice == ViewChoice.LIST_VIEW) {
+    if (this.selectedLayoutChoice == LayoutChoice.LIST_VIEW) {
       return ListToyWidget(toys: this.toys);
     }
 
