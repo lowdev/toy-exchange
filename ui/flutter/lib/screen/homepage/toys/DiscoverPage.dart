@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toyexchange/screen/utils/Screens.dart';
 import 'package:toyexchange/screen/homepage/toys/model/Toys.dart';
 import 'package:toyexchange/screen/homepage/toys/toy/GridToyWidget.dart';
 import 'package:toyexchange/screen/homepage/toys/toy/ListToyWidget.dart';
@@ -28,7 +29,7 @@ class DiscoverPageState extends State<DiscoverPage> {
         appBar: getBar(),
         body: new Padding(
             padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
-            child: getBody()),
+            child: getBody(context)),
         bottomNavigationBar: createBottomNavigationBar(),
     );
   }
@@ -69,7 +70,15 @@ class DiscoverPageState extends State<DiscoverPage> {
     ];
   }
 
-  Widget getBody() {
+  Widget getBody(BuildContext context) {
+    if (Screens.isLargeScreen(context)) {
+      return GridToyWidget(toys: this.toys);
+    }
+
+    if (this.selectedViewChoice == ViewChoice.LIST_VIEW) {
+      return ListToyWidget(toys: this.toys);
+    }
+
     return GridToyWidget(toys: this.toys);
   }
 
