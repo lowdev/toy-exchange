@@ -18,3 +18,8 @@ samples, guidance on mobile development, and a full API reference.
 ## Run
 
 flutter run -d chrome
+
+## Thank you
+https://www.codeproject.com/Articles/1252727/Flutter-Getting-Started-Tutorial-4-ListView
+https://medium.com/flutter-community/developing-for-multiple-screen-sizes-and-orientations-in-flutter-fragments-in-flutter-a4c51b849434
+https://github.com/nb312/flutter-layouts-exampls

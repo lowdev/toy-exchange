@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toyexchange/screen/homepage/toys/model/Toys.dart';
+import 'package:toyexchange/screen/homepage/toys/toy/GridToyWidget.dart';
 import 'package:toyexchange/screen/homepage/toys/toy/ListToyWidget.dart';
 import 'package:toyexchange/screen/homepage/toys/toy/model/Toy.dart';
 
@@ -27,7 +28,7 @@ class DiscoverPageState extends State<DiscoverPage> {
         appBar: getBar(),
         body: new Padding(
             padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
-            child: getBody(context)),
+            child: getBody()),
         bottomNavigationBar: createBottomNavigationBar(),
     );
   }
@@ -68,12 +69,8 @@ class DiscoverPageState extends State<DiscoverPage> {
     ];
   }
 
-  Widget getBody(BuildContext context) {
-    return ListView.builder(
-      itemCount: toys.length,
-      itemBuilder: (context, index) => new ListToyWidget(toy: toys[index]),
-      padding: EdgeInsets.all(0.0),
-    );
+  Widget getBody() {
+    return GridToyWidget(toys: this.toys);
   }
 
   Widget createBottomNavigationBar() {
