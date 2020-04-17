@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:toyexchange/screen/discover/model/PageChoice.dart';
+import 'package:toyexchange/screen/discover/toycreation/ToyCreationPage.dart';
 import 'package:toyexchange/screen/utils/Screens.dart';
 import 'package:toyexchange/screen/discover/model/Toys.dart';
 import 'package:toyexchange/screen/discover/toy/GridToyWidget.dart';
@@ -14,11 +16,17 @@ class DiscoverPage extends StatefulWidget {
 
 class DiscoverPageState extends State<DiscoverPage> {
   LayoutChoice selectedLayoutChoice = LayoutChoice.LIST_VIEW;
-  int _selectedIndex = 0;
+  PageChoice selectedPageChoice;
 
-  void select(LayoutChoice choice) {
+  void selectLayout(LayoutChoice choice) {
     setState(() {
       selectedLayoutChoice = choice;
+    });
+  }
+
+  void selectPage(int pageChoice) {
+    setState(() {
+      selectedPageChoice = PageChoice.allPageChoices()[pageChoice];
     });
   }
 
@@ -55,7 +63,7 @@ class DiscoverPageState extends State<DiscoverPage> {
       ),
       PopupMenuButton<LayoutChoice>(
         icon: Icon(Icons.tune),
-        onSelected: select,
+        onSelected: selectLayout,
         itemBuilder: (BuildContext context) {
           return LayoutChoice.allLayoutChoices().map<PopupMenuEntry<LayoutChoice>>((LayoutChoice choice) {
             return PopupMenuItem<LayoutChoice>(
@@ -72,6 +80,18 @@ class DiscoverPageState extends State<DiscoverPage> {
   }
 
   Widget getBody(BuildContext context) {
+    if (this.selectedPageChoice == PageChoice.DISCOVER_PAGE) {
+      return getToysBody(context);
+    }
+
+    if (this.selectedPageChoice == PageChoice.CREATION_PAGE) {
+      return getToyCreationBody(context);
+    }
+
+    return getToysBody(context);
+  }
+
+  Widget getToysBody(BuildContext context) {
     if (Screens.isLargeScreen(context)) {
       return GridToyWidget(toys: this.toys);
     }
@@ -83,25 +103,21 @@ class DiscoverPageState extends State<DiscoverPage> {
     return GridToyWidget(toys: this.toys);
   }
 
+  Widget getToyCreationBody(BuildContext context) {
+    return ToyCreationPage();
+  }
+
   Widget createBottomNavigationBar() {
     return BottomNavigationBar(
       currentIndex: 0,
-      items: [
-        BottomNavigationBarItem(
-          title: Text("Discover"),
-          icon: Icon(Icons.search),
-        ),
-        BottomNavigationBarItem(
-          title: Text("Add"),
-          icon: Icon(Icons.add_box),
-        ),
-        BottomNavigationBarItem(
-          title: Text("My profile"),
-          icon: Icon(Icons.account_box),
-        ),
-      ],
-      onTap: (int index){
-      },
+      onTap: selectPage,
+      items: PageChoice.allPageChoices().map<BottomNavigationBarItem>(
+        (PageChoice pageChoice) {
+          return BottomNavigationBarItem(
+            title: Text(pageChoice.title),
+            icon: Icon(pageChoice.icon),
+          );
+        }).toList()
     );
   }
 }
