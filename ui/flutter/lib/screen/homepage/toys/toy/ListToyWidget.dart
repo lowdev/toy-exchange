@@ -46,7 +46,7 @@ class ListToyWidget extends StatelessWidget {
                   ]
               ),
               onLongPress: () => showSnackBar(context, toy),
-              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ToyDetailWidget(toy)))
+              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ToyDetailPage(toy)))
             )
           ],
         ));

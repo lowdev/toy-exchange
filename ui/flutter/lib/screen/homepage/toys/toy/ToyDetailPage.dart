@@ -4,17 +4,17 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'model/Toy.dart';
 import 'ToyDescription.dart';
 
-class ToyDetailWidget extends StatefulWidget {
+class ToyDetailPage extends StatefulWidget {
 
   final Toy toy;
 
-  ToyDetailWidget(this.toy) { }
+  ToyDetailPage(this.toy) { }
 
   @override
-  ToyDetailWidgetState createState() => ToyDetailWidgetState();
+  ToyDetailPageState createState() => ToyDetailPageState();
 }
 
-class ToyDetailWidgetState extends State<ToyDetailWidget> {
+class ToyDetailPageState extends State<ToyDetailPage> {
   @override
   Widget build(BuildContext context) {
     return getScaffold();
