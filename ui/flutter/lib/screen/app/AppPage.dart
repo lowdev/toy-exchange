@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'model/PageChoice.dart';
-import 'toycreation/ToyCreationPage.dart';
-import 'discover/DiscoverPage.dart';
 
 class AppPage extends StatefulWidget {
   @override
@@ -28,7 +26,7 @@ class AppPageState extends State<AppPage> {
   Widget getBody() {
     return IndexedStack(
         index: selectedPageChoice,
-        children: PageChoice.allPage() ,
+        children: PageChoice.allPage(),
     );
   }
 

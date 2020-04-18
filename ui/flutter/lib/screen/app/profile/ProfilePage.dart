@@ -1,20 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ToyCreationPage extends StatelessWidget {
+class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      backgroundColor: Colors.white30,
-      appBar: createBar(),
-      body: createBody(context)
+        backgroundColor: Colors.white30,
+        appBar: createBar(),
+        body: createBody(context)
     );
   }
 
   AppBar createBar() {
     return new AppBar(
       title: new Text(
-        "Create",
+        "Profile",
         style: new TextStyle(
             fontSize: 18.0,
             fontWeight: FontWeight.bold,

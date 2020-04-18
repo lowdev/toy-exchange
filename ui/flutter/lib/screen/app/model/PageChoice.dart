@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:toyexchange/screen/app/discover/DiscoverPage.dart';
+import 'package:toyexchange/screen/app/profile/ProfilePage.dart';
 import 'package:toyexchange/screen/app/toycreation/ToyCreationPage.dart';
 
 class PageChoice {
 
   static PageChoice DISCOVER_PAGE =  PageChoice(title: 'Discover', icon: Icons.search, page: DiscoverPage());
   static PageChoice CREATION_PAGE =  PageChoice(title: 'Add', icon: Icons.add_box, page: ToyCreationPage());
-  static PageChoice PROFILE_PAGE =  PageChoice(title: 'My profile', icon: Icons.account_box, page: DiscoverPage());
+  static PageChoice PROFILE_PAGE =  PageChoice(title: 'My profile', icon: Icons.account_box, page: ProfilePage());
 
   static allPageChoices() {
     return <PageChoice>[
