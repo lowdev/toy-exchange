@@ -32,7 +32,7 @@ class AppPageState extends State<AppPage> {
 
   Widget createBottomNavigationBar() {
     return BottomNavigationBar(
-      currentIndex: 0,
+      currentIndex: selectedPageChoice,
       onTap: selectPage,
       items: PageChoice.allPageChoices().map<BottomNavigationBarItem>(
         (PageChoice pageChoice) {
