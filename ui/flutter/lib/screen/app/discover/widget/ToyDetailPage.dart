@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'model/Toy.dart';
+import '../model/Toy.dart';
 import 'ToyDescription.dart';
 
 class ToyDetailPage extends StatefulWidget {

@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:toyexchange/screen/discover/toy/ToyDetailPage.dart';
-import 'model/Toy.dart';
+import 'ToyDetailPage.dart';
+import '../model/Toy.dart';
 
 class ListToyWidget extends StatelessWidget {
 

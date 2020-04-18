@@ -16,6 +16,7 @@ class PageChoice {
 
   final String title;
   final IconData icon;
+  final Widget page;
 
-  const PageChoice({this.title, this.icon});
+  const PageChoice({this.title, this.icon, this.page});
 }

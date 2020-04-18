@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:toyexchange/screen/discover/toy/ToyDetailPage.dart';
-import 'model/Toy.dart';
+import 'ToyDetailPage.dart';
+import '../model/Toy.dart';
 
 class GridToyWidget extends StatelessWidget {
 
