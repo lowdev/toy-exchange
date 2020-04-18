@@ -9,11 +9,11 @@ class AppPage extends StatefulWidget {
 }
 
 class AppPageState extends State<AppPage> {
-  PageChoice selectedPageChoice;
+  int selectedPageChoice = 0;
 
   void selectPage(int pageChoice) {
     setState(() {
-      selectedPageChoice = PageChoice.allPageChoices()[pageChoice];
+      selectedPageChoice = pageChoice;
     });
   }
 
@@ -26,15 +26,10 @@ class AppPageState extends State<AppPage> {
   }
 
   Widget getBody() {
-    if (this.selectedPageChoice == PageChoice.DISCOVER_PAGE) {
-      return DiscoverPage();
-    }
-
-    if (this.selectedPageChoice == PageChoice.CREATION_PAGE) {
-      return ToyCreationPage();
-    }
-
-    return DiscoverPage();
+    return IndexedStack(
+        index: selectedPageChoice,
+        children: PageChoice.allPage() ,
+    );
   }
 
   Widget createBottomNavigationBar() {

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:toyexchange/screen/app/discover/DiscoverPage.dart';
+import 'package:toyexchange/screen/app/toycreation/ToyCreationPage.dart';
 
 class PageChoice {
 
-  static const PageChoice DISCOVER_PAGE =  PageChoice(title: 'Discover', icon: Icons.search);
-  static const PageChoice CREATION_PAGE =  PageChoice(title: 'Add', icon: Icons.add_box);
-  static const PageChoice PROFILE_PAGE =  PageChoice(title: 'My profile', icon: Icons.account_box);
+  static PageChoice DISCOVER_PAGE =  PageChoice(title: 'Discover', icon: Icons.search, page: DiscoverPage());
+  static PageChoice CREATION_PAGE =  PageChoice(title: 'Add', icon: Icons.add_box, page: ToyCreationPage());
+  static PageChoice PROFILE_PAGE =  PageChoice(title: 'My profile', icon: Icons.account_box, page: DiscoverPage());
 
   static allPageChoices() {
     return <PageChoice>[
@@ -14,9 +16,17 @@ class PageChoice {
     ];
   }
 
+  static List<Widget> allPage() {
+    return allPageChoices().map<Widget>(
+        (PageChoice pageChoice) {
+          return pageChoice.page;
+        }
+    ).toList();
+  }
+
   final String title;
   final IconData icon;
   final Widget page;
 
-  const PageChoice({this.title, this.icon, this.page});
+  PageChoice({this.title, this.icon, this.page});
 }
