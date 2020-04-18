@@ -83,22 +83,6 @@ class ToyDetailPageState extends State<ToyDetailPage> {
     );
   }
 
-  Widget createDescriptionPart(BuildContext context) {
-    return new ListTile(
-      title: Text("Description"),
-      subtitle: new Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            new Text("country",
-                style: new TextStyle(fontWeight: FontWeight.normal)),
-            new Text('Population: ',
-                style: new TextStyle( fontWeight: FontWeight.normal)),
-          ]
-      ),
-    );
-  }
-
   Widget createBottomNavigationBar() {
     return BottomNavigationBar(
       currentIndex: 0,
