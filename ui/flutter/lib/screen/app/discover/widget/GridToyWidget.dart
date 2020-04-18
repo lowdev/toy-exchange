@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'ToyDetailPage.dart';
+import 'toy/ToyPage.dart';
 import '../model/Toy.dart';
 
 class GridToyWidget extends StatelessWidget {
@@ -26,7 +26,7 @@ class GridToyWidget extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => new ToyDetailPage(toy)));
+                builder: (context) => new ToyPage(toy)));
       },
       child: Card(
         elevation: 1.0,

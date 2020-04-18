@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'ToyDetailPage.dart';
+import 'toy/ToyPage.dart';
 import '../model/Toy.dart';
 
 class ListToyWidget extends StatelessWidget {
@@ -45,7 +45,7 @@ class ListToyWidget extends StatelessWidget {
                   ]
               ),
               onLongPress: () => showSnackBar(context, toy),
-              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ToyDetailPage(toy)))
+              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ToyPage(toy)))
             )
           ],
         ));
