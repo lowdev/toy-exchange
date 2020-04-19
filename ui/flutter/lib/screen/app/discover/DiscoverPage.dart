@@ -49,6 +49,7 @@ class DiscoverPageState extends State<DiscoverPage> {
     return [
       IconButton(
         icon: Icon(Icons.search),
+        onPressed: () => {},
       ),
       PopupMenuButton<LayoutChoice>(
           icon: Icon(Icons.tune),

@@ -6,7 +6,7 @@ class GridToyWidget extends StatelessWidget {
 
   final List<Toy> toys;
 
-  GridToyWidget({this.toys}) {}
+  GridToyWidget({this.toys});
 
   @override
   Widget build(BuildContext context) {

@@ -6,7 +6,7 @@ class ListToyWidget extends StatelessWidget {
 
   final List<Toy> toys;
 
-  ListToyWidget({this.toys}) {}
+  ListToyWidget({this.toys});
 
   @override
   Widget build(BuildContext context) {

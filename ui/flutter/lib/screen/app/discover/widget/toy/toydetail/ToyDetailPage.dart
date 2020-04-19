@@ -7,7 +7,7 @@ class ToyDetailPage extends StatelessWidget {
 
   final Toy toy;
 
-  ToyDetailPage(this.toy) { }
+  ToyDetailPage(this.toy);
 
   @override
   Widget build(BuildContext context) {
