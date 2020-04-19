@@ -24,6 +24,6 @@ class ProfilePage extends StatelessWidget {
   }
 
   Widget createBody(BuildContext context) {
-    return new Text("test");
+    return new Text("Profile");
   }
 }

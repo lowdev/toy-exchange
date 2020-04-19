@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toyexchange/screen/app/discover/widget/toy/toydetail/ToyDetailPage.dart';
 import '../../model/Toy.dart';
+import 'askforexchange/AskForExchangePage.dart';
 import 'model/ToyPageChoice.dart';
 
 class ToyPage extends StatefulWidget {
@@ -9,7 +10,7 @@ class ToyPage extends StatefulWidget {
 
   final Toy toy;
 
-  ToyPage(this.toy) { }
+  ToyPage(this.toy);
 
   @override
   ToyPageState createState() => ToyPageState();
@@ -51,12 +52,13 @@ class ToyPageState extends State<ToyPage> {
       return new ToyDetailPage(widget.toy);
     }
     
-    return new ToyDetailPage(widget.toy);
+    return new AskForExchangePage();
   }
 
   Widget createBottomNavigationBar() {
     return BottomNavigationBar(
       currentIndex: selectedPageChoice,
+      onTap: selectPage,
       items: widget.toyPageChoices.map<BottomNavigationBarItem>(
           (ToyPageChoice pageChoice) {
         return BottomNavigationBarItem(
