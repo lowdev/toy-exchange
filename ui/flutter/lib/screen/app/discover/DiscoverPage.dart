@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toyexchange/screen/app/discover/widget/toy/ToyPage.dart';
 import 'package:toyexchange/screen/utils/Screens.dart';
 import 'widget/GridToyWidget.dart';
 import 'widget/ListToyWidget.dart';
@@ -78,6 +79,6 @@ class DiscoverPageState extends State<DiscoverPage> {
       return ListToyWidget(toys: this.toys);
     }
 
-    return GridToyWidget(toys: this.toys);
+    return GridToyWidget(toys: this.toys, onClickCallback: (Toy toy) => new ToyPage(toy));
   }
 }

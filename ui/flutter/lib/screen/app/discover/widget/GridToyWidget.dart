@@ -5,8 +5,9 @@ import '../model/Toy.dart';
 class GridToyWidget extends StatelessWidget {
 
   final List<Toy> toys;
+  final Function onClickCallback;
 
-  GridToyWidget({this.toys});
+  GridToyWidget({this.toys, this.onClickCallback});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class GridToyWidget extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => new ToyPage(toy)));
+                builder: (context) => this.onClickCallback(toy)));
       },
       child: Card(
         elevation: 1.0,
