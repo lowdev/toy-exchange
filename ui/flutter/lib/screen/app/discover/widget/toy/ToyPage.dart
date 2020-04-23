@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toyexchange/screen/app/discover/widget/toy/toydetail/ToyDetailPage.dart';
-import '../../model/Toy.dart';
+import 'package:toyexchange/screen/app/model/Toy.dart';
 import 'askforexchange/AskForExchangePage.dart';
 import 'model/ToyPageChoice.dart';
 

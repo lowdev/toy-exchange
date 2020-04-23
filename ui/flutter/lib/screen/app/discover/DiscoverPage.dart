@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:toyexchange/screen/app/discover/widget/toy/ToyPage.dart';
 import 'package:toyexchange/screen/utils/Screens.dart';
-import 'widget/GridToyWidget.dart';
+import '../toywidget/GridToyWidget.dart';
 import 'widget/ListToyWidget.dart';
 import 'model/Toys.dart';
-import 'model/Toy.dart';
+import '../model/Toy.dart';
 import 'model/LayoutChoice.dart';
 
 class DiscoverPage extends StatefulWidget {

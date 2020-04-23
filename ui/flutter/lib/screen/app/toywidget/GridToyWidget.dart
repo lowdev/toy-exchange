@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'toy/ToyPage.dart';
 import '../model/Toy.dart';
 
 class GridToyWidget extends StatelessWidget {

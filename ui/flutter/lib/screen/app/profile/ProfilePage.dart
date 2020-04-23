@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toyexchange/common/my_custom_icons_icons.dart';
+import 'package:toyexchange/screen/app/model/Toy.dart';
+import 'package:toyexchange/screen/app/toywidget/GridToyWidget.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
@@ -19,7 +21,7 @@ class ProfilePage extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            Icon(Icons.directions_car),
+            createMyPuzzleBody(context),
             Icon(Icons.favorite),
             Icon(Icons.person),
           ],
@@ -42,7 +44,7 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget createBody(BuildContext context) {
-    return new Text("Profile");
+  Widget createMyPuzzleBody(BuildContext context) {
+    return new GridToyWidget(toys: [], onClickCallback: (Toy toy) => {} );
   }
 }

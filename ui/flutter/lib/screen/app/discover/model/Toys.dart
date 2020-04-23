@@ -1,4 +1,4 @@
-import 'Toy.dart';
+import '../../model/Toy.dart';
 
 class Toys {
   static List<Toy> allToys()  {

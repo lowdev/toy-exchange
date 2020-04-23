@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:toyexchange/screen/app/discover/model/Toy.dart';
+import 'package:toyexchange/screen/app/model/Toy.dart';
 import 'ToyDescription.dart';
 
 class ToyDetailPage extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'toy/ToyPage.dart';
-import '../model/Toy.dart';
+import '../../model/Toy.dart';
 
 class ListToyWidget extends StatelessWidget {
 
