@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:toyexchange/common/my_custom_icons_icons.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
@@ -10,7 +10,7 @@ class ProfilePage extends StatelessWidget {
         appBar: AppBar(
           bottom: TabBar(
             tabs: [
-              Tab(icon: Icon(Icons.directions_car)),
+              Tab(icon: Icon(MyCustomIcons.puzzle)),
               Tab(icon: Icon(Icons.favorite)),
               Tab(icon: Icon(Icons.person)),
             ],

@@ -4,6 +4,6 @@ import 'package:flutter/material.dart';
 class AskForExchangePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new Text("Ask for exchange");
+    return new Text("Ask for exchange: add stepper visualization");
   }
 }
