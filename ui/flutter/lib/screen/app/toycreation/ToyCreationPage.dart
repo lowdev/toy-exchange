@@ -43,10 +43,16 @@ class ToyCreationPageState extends State<ToyCreationPage> {
         key: formKey,
         child: Column (
           children: <Widget>[
-            createUploadImage(),
-            createTitleInput(),
-            createNumberOfPieceInput(),
-            createDescriptionInput()
+            new Card(child: createUploadImage()),
+            new Card(child:
+              Column(
+                children: [
+                  createTitleInput(),
+                  createDescriptionInput()
+                ]
+              )
+            ),
+            new Card(child: createNumberOfPieceInput())
           ],
         )
     );
@@ -81,7 +87,7 @@ class ToyCreationPageState extends State<ToyCreationPage> {
   Widget createTitleInput() {
     return TextFormField(
       decoration: InputDecoration(
-          labelText: 'Entrez le titre'
+          labelText: 'Nom du puzzle'
       ),
       validator: (value) {
         if (value.isEmpty) {
