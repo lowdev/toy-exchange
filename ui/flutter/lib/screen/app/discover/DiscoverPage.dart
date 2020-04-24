@@ -3,7 +3,7 @@ import 'package:toyexchange/screen/app/discover/widget/toy/ToyPage.dart';
 import 'package:toyexchange/screen/utils/Screens.dart';
 import '../toywidget/GridToyWidget.dart';
 import 'widget/ListToyWidget.dart';
-import 'model/Toys.dart';
+import '../model/Toys.dart';
 import '../model/Toy.dart';
 import 'model/LayoutChoice.dart';
 
@@ -79,6 +79,8 @@ class DiscoverPageState extends State<DiscoverPage> {
       return ListToyWidget(toys: this.toys);
     }
 
-    return GridToyWidget(toys: this.toys, onClickCallback: (Toy toy) => new ToyPage(toy));
+    return GridToyWidget(toys: this.toys,
+        onClickCallback: (BuildContext context, Toy toy) =>
+            Navigator.push(context, MaterialPageRoute(builder: (context) =>  new ToyPage(toy))));
   }
 }

@@ -22,12 +22,7 @@ class GridToyWidget extends StatelessWidget {
 
   Widget buildToyWidget(BuildContext context, Toy toy) {
     return InkWell(
-      onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => this.onClickCallback(toy)));
-      },
+      onTap: this.onClickCallback(context, toy),
       child: Card(
         elevation: 1.0,
         shape: RoundedRectangleBorder(
