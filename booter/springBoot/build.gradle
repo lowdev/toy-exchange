@@ -4,6 +4,13 @@ plugins {
 }
 
 dependencies {
-    implementation project(":feature:user")
+    implementation project(":feature:toy:infrastructure")
+    implementation project(":feature:toy:domain")
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.assertj:assertj-core:3.15.0'
+}
+
+test {
+    useJUnitPlatform()
 }

@@ -11,4 +11,8 @@ public class UserJpaRepository implements UserReadRepository {
     public Optional<User> findById(UserId userId) {
         return Optional.empty();
     }
+
+    @Override
+    public void save(User user) {
+    }
 }

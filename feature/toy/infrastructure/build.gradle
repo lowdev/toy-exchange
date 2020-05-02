@@ -1,0 +1,4 @@
+dependencies {
+    implementation project(":feature:toy:domain")
+    implementation 'org.springframework.hateoas:spring-hateoas:1.0.3.RELEASE'
+}

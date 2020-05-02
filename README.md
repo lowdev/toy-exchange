@@ -8,6 +8,8 @@
 
 1. [About](#about)
 2. [References](#references)
+3. [Project structure and architecture](#project-structure-and-architecture)  
+   3.1. [Hexagonal Architecture](#hexagonal-architecture)
 
 ## About
 
@@ -15,8 +17,62 @@ This project help me to practise different techniques such as
 - Architecture hexagonal / onion architecture
 - DDD
 - Event sourcing
+- CQRS
 
 I try to not use getter/setter to have a strong encapsulation (and see what happened :p)
+
+## Domain description
+
+Toy exchange
+
+## Project structure and architecture
+### Introduction Hexagonal Architecture
+The thing that i like in architecture hexagonal: make sustainable business code.
+To do that, we don't want to have framework in our business code.
+Just pure java!
+
+Nothing against frameworks. Frameworks will be used outside our business code.
+
+[More info on octo blog](https://blog.octo.com/en/hexagonal-architecture-three-principles-and-an-implementation-example/)
+
+### Terminology
+Domain is where I will put business code.
+Infrastructure is where I will put all code that not doesn't fit in domain.
+Port is interface part of domain.
+Adapter is implementation of port part of infrastructure.
+
+There is two type of port: In and Out (trigger and writer)
+
+"Port in" will be used by Rest controller.
+"Port out" will be used in domain to save in database to launch event
+
+### Package Structure
+
+```
+└── toy-exchange
+    ├── booter
+    │   └── springBoot
+    ├── feature
+    │   ├── toy
+    │   │   ├── domain
+    │   │   └── infrastructure
+    │   └── user
+    │   │   ├── domain
+    │   │   └── infrastructure
+    └── ui
+        └── flutter
+```
+
+## Technology
+### Gradle
+### Spring Rest
+### Futter
+
+## To learn / Question to myself
+
+- Difference yet between application service and domain service
+- How to manage transaction in DDD
+- For CRUD operations should we pass by domain or use directly infra 
 
 ## References
 

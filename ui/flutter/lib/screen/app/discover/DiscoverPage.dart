@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toyexchange/screen/app/discover/widget/toy/ToyPage.dart';
+import 'package:toyexchange/screen/app/search/SearchPage.dart';
 import 'package:toyexchange/screen/utils/Screens.dart';
 import '../toywidget/GridToyWidget.dart';
 import 'widget/ListToyWidget.dart';
@@ -50,7 +51,7 @@ class DiscoverPageState extends State<DiscoverPage> {
     return [
       IconButton(
         icon: Icon(Icons.search),
-        onPressed: () => {},
+        onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) =>  new SearchPage())),
       ),
       PopupMenuButton<LayoutChoice>(
           icon: Icon(Icons.tune),
