@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:toyexchange/screen/app/discover/widget/toy/ToyPage.dart';
+import 'package:toyexchange/screen/app/model/adapter/DummyToyRepository.dart';
+import 'package:toyexchange/screen/app/model/adapter/HttpToyRepository.dart';
+import 'package:toyexchange/screen/app/model/port/ToyRepository.dart';
 import 'package:toyexchange/screen/app/search/SearchPage.dart';
 import 'package:toyexchange/screen/utils/Screens.dart';
 import '../toywidget/GridToyWidget.dart';
@@ -7,6 +10,7 @@ import 'widget/ListToyWidget.dart';
 import '../model/Toys.dart';
 import '../model/Toy.dart';
 import 'model/LayoutChoice.dart';
+import 'package:http/http.dart' as http;
 
 class DiscoverPage extends StatefulWidget {
   @override
@@ -22,10 +26,19 @@ class DiscoverPageState extends State<DiscoverPage> {
     });
   }
 
-  final List<Toy> toys = Toys.allToys();
+  ToyRepository toyRepository1 = new DummyToyRepository();
+  ToyRepository toyRepository = new HttpToyRepository();
+  List<Toy> toys = List();
+
+  @override
+  void initState() {
+    super.initState();
+    toyRepository.findAll().then((toys) => this.toys = toys);
+  }
 
   @override
   Widget build(BuildContext context) {
+    http.get('http://10.0.2.2:8080/toys');
     return new Scaffold(
       appBar: getBar(),
       body: new Padding(
