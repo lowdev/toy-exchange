@@ -6,7 +6,7 @@ class GridToyWidget extends StatelessWidget {
   final List<Toy> toys;
   final Function onClickCallback;
 
-  GridToyWidget({this.toys, this.onClickCallback});
+  GridToyWidget(this.toys, this.onClickCallback) { }
 
   @override
   Widget build(BuildContext context) {

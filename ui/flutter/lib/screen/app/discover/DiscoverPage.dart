@@ -73,15 +73,16 @@ class DiscoverPageState extends State<DiscoverPage> {
 
   Widget getBody(BuildContext context) {
     if (Screens.isLargeScreen(context)) {
-      return GridToyWidget(toys: this.toys);
+      return GridToyWidget(this.toys, onclickCallBack);
     }
 
     if (this.selectedLayoutChoice == LayoutChoice.LIST_VIEW) {
       return ListToyWidget(toys: this.toys);
     }
 
-    return GridToyWidget(toys: this.toys,
-        onClickCallback: (BuildContext context, Toy toy) =>
-            Navigator.push(context, MaterialPageRoute(builder: (context) =>  new ToyPage(toy))));
+    return GridToyWidget(this.toys, onclickCallBack);
   }
+
+  final Function onclickCallBack = (BuildContext context, Toy toy) =>
+    () => Navigator.push(context, MaterialPageRoute(builder: (context) =>  new ToyPage(toy)));
 }

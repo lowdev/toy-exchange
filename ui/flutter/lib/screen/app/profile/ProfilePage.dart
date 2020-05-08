@@ -49,6 +49,6 @@ class ProfilePage extends StatelessWidget {
   }
 
   Widget createMyPuzzleBody(BuildContext context) {
-    return new GridToyWidget(toys: toys, onClickCallback: (BuildContext context, Toy toy) => print("ici") );
+    return new GridToyWidget(toys, (BuildContext context, Toy toy) => () => print("ici") );
   }
 }
