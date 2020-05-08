@@ -117,6 +117,7 @@ with a source code.
 - How to manage transaction in DDD
 - For CRUD operations should we pass by domain or use directly infra
 - GraphQL
+- Representation with an object (ex: Title vs String)
 
 ## References
 
