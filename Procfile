@@ -1,0 +1,1 @@
+web: java -Dserver.port=$PORT $JAVA_OPTS -jar ./booter/springBoot/build/libs/springBoot-1.0-SNAPSHOT.jar
