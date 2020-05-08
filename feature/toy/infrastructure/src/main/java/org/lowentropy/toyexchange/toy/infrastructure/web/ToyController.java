@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+import static org.springframework.http.ResponseEntity.notFound;
 
 @RestController
 @RequestMapping("toys")
@@ -39,8 +40,10 @@ public class ToyController {
     }
 
     @GetMapping("/{toyId}")
-    public ResponseEntity<ToyRepresentationModel> findToy(@PathVariable UUID toyId) {
-        return null;
+    public ResponseEntity<EntityModel<ToyRepresentationModel>> findToy(@PathVariable UUID toyId) {
+        return getToysUseCase.findToy(toyId)
+                .map(toy -> ResponseEntity.ok(resourceWithLinkToCheckoutSelf(toy)))
+                .orElse(notFound().build());
     }
 
     private EntityModel<ToyRepresentationModel> resourceWithLinkToCheckoutSelf(Toy toy) {

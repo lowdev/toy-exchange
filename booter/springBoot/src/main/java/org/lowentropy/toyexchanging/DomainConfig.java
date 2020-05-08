@@ -2,7 +2,7 @@ package org.lowentropy.toyexchanging;
 
 import org.lowentropy.toyexchange.toy.domain.model.application.GetToysUseCase;
 import org.lowentropy.toyexchange.toy.domain.model.port.ToyReadRepository;
-import org.lowentropy.toyexchange.toy.infrastructure.adapter.DumbToyReadRepository;
+import org.lowentropy.toyexchange.toy.infrastructure.adapter.DumbToyRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -15,6 +15,6 @@ public class DomainConfig {
 
     @Bean
     ToyReadRepository createToyReadRepository() {
-        return new DumbToyReadRepository();
+        return new DumbToyRepository();
     }
 }

@@ -65,14 +65,58 @@ There is two type of port: In and Out (trigger and writer)
 
 ## Technology
 ### Gradle
-### Spring Rest
-### Futter
+
+### Communication client / Server
+#### Spring Rest HATEOAS
+Communication between server and client is in REST.
+
+This is HAL format. [http://stateless.co/hal_specification.html](http://stateless.co/hal_specification.html)
+```
+{
+    _embedded: {
+        toys: [
+            {
+                id: "ebf267b8-28ce-496a-aed7-fbbee956b30f",
+                description: "No description",
+                title: "Puzzle 1000 p - Photo de groupe Disney (Panorama)",
+                numberOfPieces: "1000",
+                thumbnail: "https://cdn.ravensburger.de/images/produktseiten/360/15109.jpg",
+                _links: {
+                    self: {
+                        href: "http://localhost:8080/toys/ebf267b8-28ce-496a-aed7-fbbee956b30f"
+                    }
+                },
+            },
+            {
+                id: "c2f1e2cb-2050-4e26-8222-b188c9795bff",
+                description: "No description",
+                title: "Puzzle 1000 p - VÃ©los Ã  Amsterdam",
+                numberOfPieces: "1000",
+                thumbnail: "https://cdn.ravensburger.de/images/produktseiten/360/19606.jpg",
+                _links: {
+                    self: {
+                        href: "http://localhost:8080/toys/c2f1e2cb-2050-4e26-8222-b188c9795bff"
+                    }
+                }
+            }
+        ]
+    }
+}
+```
+#### GraphQL
+
+### UI
+#### Futter
+
+Flutter is a framework to create android, ios and web app
+with a source code.
 
 ## To learn / Question to myself
 
 - Difference yet between application service and domain service
 - How to manage transaction in DDD
-- For CRUD operations should we pass by domain or use directly infra 
+- For CRUD operations should we pass by domain or use directly infra
+- GraphQL
 
 ## References
 

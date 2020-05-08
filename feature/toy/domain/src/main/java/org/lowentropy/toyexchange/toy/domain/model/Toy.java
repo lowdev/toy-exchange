@@ -17,6 +17,8 @@ public class Toy {
         this.title = builder.title;
         this.description = builder.description;
         this.mainImage = builder.mainImage;
+    public boolean hasSameId(ToyId id) {
+        return this.id.equals(id);
     }
 
     public static class Builder {
