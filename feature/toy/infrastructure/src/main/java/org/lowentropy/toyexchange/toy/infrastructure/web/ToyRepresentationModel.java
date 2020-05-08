@@ -2,9 +2,11 @@ package org.lowentropy.toyexchange.toy.infrastructure.web;
 
 import org.lowentropy.toyexchange.toy.domain.model.ToyField;
 import org.springframework.hateoas.RepresentationModel;
+import org.springframework.hateoas.server.core.Relation;
 
 import java.util.Map;
 
+@Relation(collectionRelation = "toys")
 public class ToyRepresentationModel extends RepresentationModel {
     private Map<ToyField, String> toyAsMap;
 
@@ -26,5 +28,9 @@ public class ToyRepresentationModel extends RepresentationModel {
 
     public String getThumbnail() {
         return this.toyAsMap.get(ToyField.THUMBNAIL);
+    }
+
+    public String getNumberOfPieces() {
+        return this.toyAsMap.get(ToyField.NUMBER_OF_PIECES);
     }
 }

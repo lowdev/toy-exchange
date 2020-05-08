@@ -10,22 +10,27 @@ public class Toy {
     private ToyId id;
     private Title title;
     private Description description;
-    private MainImage mainImage;
+    private Thumbnail thumbnail;
+    private int numberOfPieces;
 
     public Toy(Builder builder) {
         this.id = builder.toyId;
         this.title = builder.title;
         this.description = builder.description;
-        this.mainImage = builder.mainImage;
+        this.thumbnail = builder.thumbnail;
+        this.numberOfPieces = builder.numberOfPieces;
+    }
+
     public boolean hasSameId(ToyId id) {
         return this.id.equals(id);
     }
 
     public static class Builder {
         public ToyId toyId;
+        public int numberOfPieces;
         private Title title;
         private Description description;
-        private MainImage mainImage = MainImage.NO_IMAGE;;
+        private Thumbnail thumbnail = Thumbnail.NO_THUMBNAIL;;
 
         public Builder withId(ToyId id) {
             this.toyId = id;
@@ -42,8 +47,13 @@ public class Toy {
             return this;
         }
 
-        public Builder withImage(MainImage image) {
-            this.mainImage = image;
+        public Builder withThumbnail(Thumbnail image) {
+            this.thumbnail = image;
+            return this;
+        }
+
+        public Builder withNumberOfPieces(int numberOfPieces) {
+            this.numberOfPieces = numberOfPieces;
             return this;
         }
 
@@ -57,6 +67,7 @@ public class Toy {
                 ToyField.ID, id.toString(),
                 ToyField.TITLE, title.toString(),
                 ToyField.DESCRIPTION, description.toString(),
-                ToyField.THUMBNAIL, mainImage.toString());
+                ToyField.THUMBNAIL, thumbnail.toString(),
+                ToyField.NUMBER_OF_PIECES, Integer.toString(numberOfPieces));
     }
 }

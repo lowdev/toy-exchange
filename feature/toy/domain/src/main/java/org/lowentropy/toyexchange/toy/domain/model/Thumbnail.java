@@ -1,11 +1,11 @@
 package org.lowentropy.toyexchange.toy.domain.model;
 
-public class MainImage {
-    public static final MainImage NO_IMAGE = new MainImage("");
+public class Thumbnail {
+    public static final Thumbnail NO_THUMBNAIL = new Thumbnail("");
 
     private String source;
 
-    public MainImage(String source) {
+    public Thumbnail(String source) {
         this.source = source;
     }
 
