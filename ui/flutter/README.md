@@ -19,6 +19,10 @@ samples, guidance on mobile development, and a full API reference.
 
 flutter run -d chrome
 
+## Build
+
+flutter build web
+
 ## To think
 
 - Dependency injection on flutter

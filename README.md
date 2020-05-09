@@ -111,6 +111,8 @@ This is HAL format. [http://stateless.co/hal_specification.html](http://stateles
 Flutter is a framework to create android, ios and web app
 with a source code.
 
+[http://localhost:8080/flutter/index.html](http://localhost:8080/flutter/index.html)
+
 ## To learn / Question to myself
 
 - Difference yet between application service and domain service
