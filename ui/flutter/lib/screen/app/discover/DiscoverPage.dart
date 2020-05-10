@@ -33,7 +33,7 @@ class DiscoverPageState extends State<DiscoverPage> {
   @override
   void initState() {
     super.initState();
-    futureToys = toyRepository1.findAll();
+    futureToys = toyRepository.findAll();
   }
 
   @override
