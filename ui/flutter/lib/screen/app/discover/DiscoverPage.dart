@@ -28,12 +28,12 @@ class DiscoverPageState extends State<DiscoverPage> {
 
   ToyRepository toyRepository1 = new DummyToyRepository();
   ToyRepository toyRepository = new HttpToyRepository();
-  List<Toy> toys = Toys.allToys();
+  Future<List<Toy>> futureToys;
 
   @override
   void initState() {
     super.initState();
-    toyRepository.findAll().then((toys) => this.toys = toys);
+    futureToys = toyRepository1.findAll();
   }
 
   @override
@@ -41,8 +41,19 @@ class DiscoverPageState extends State<DiscoverPage> {
     return new Scaffold(
       appBar: getBar(),
       body: new Padding(
-          padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
-          child: getBody(context)),
+        padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
+        child: FutureBuilder<List<Toy>>(
+          future: futureToys,
+          builder: (context, snapshot) {if (snapshot.hasData) {
+            return getBody(context, snapshot.data);
+          } else if (snapshot.hasError) {
+            return Text("${snapshot.error}");
+          }
+
+           return CircularProgressIndicator();
+          }
+        )
+      )
     );
   }
 
@@ -83,16 +94,16 @@ class DiscoverPageState extends State<DiscoverPage> {
     ];
   }
 
-  Widget getBody(BuildContext context) {
+  Widget getBody(BuildContext context, List<Toy> toys) {
     if (Screens.isLargeScreen(context)) {
-      return GridToyWidget(this.toys, onclickCallBack);
+      return GridToyWidget(toys, onclickCallBack);
     }
 
     if (this.selectedLayoutChoice == LayoutChoice.LIST_VIEW) {
-      return ListToyWidget(toys: this.toys);
+      return ListToyWidget(toys: toys);
     }
 
-    return GridToyWidget(this.toys, onclickCallBack);
+    return GridToyWidget(toys, onclickCallBack);
   }
 
   final Function onclickCallBack = (BuildContext context, Toy toy) =>
