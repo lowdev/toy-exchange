@@ -1,22 +1,6 @@
-import 'package:http/http.dart' as http;
 import 'Toy.dart';
 
 class Toys {
-
-  Future<List<Toy>> fetchToys() async {
-    final response =
-    await http.get('http://localhost:8080/toys');
-
-    if (response.statusCode == 200) {
-      // If the server did return a 200 OK response,
-      // then parse the JSON.
-      return null;
-    }
-
-    // If the server did not return a 200 OK response,.
-    return allToys();
-  }
-
   static List<Toy> allToys()  {
     var toys = new List<Toy>();
 

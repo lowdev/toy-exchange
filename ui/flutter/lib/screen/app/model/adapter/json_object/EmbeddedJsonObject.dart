@@ -6,7 +6,8 @@ class EmbeddedJsonObject {
   EmbeddedJsonObject({this.toys});
 
   factory EmbeddedJsonObject.fromJson(Map<String, dynamic> json) {
-    print(json);
-    return EmbeddedJsonObject();
+    return EmbeddedJsonObject(
+        toys: ToysJsonObject.fromJson(json['toys'])
+    );
   }
 }

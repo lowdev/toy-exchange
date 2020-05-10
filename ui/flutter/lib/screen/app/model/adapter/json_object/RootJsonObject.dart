@@ -1,12 +1,12 @@
 import 'EmbeddedJsonObject.dart';
 
-class MainJsonObject {
+class RootJsonObject {
   EmbeddedJsonObject embeddedJsonObject;
 
-  MainJsonObject({this.embeddedJsonObject});
+  RootJsonObject({this.embeddedJsonObject});
 
-  factory MainJsonObject.fromJson(Map<String, dynamic> json) {
-    return MainJsonObject(
+  factory RootJsonObject.fromJson(Map<String, dynamic> json) {
+    return RootJsonObject(
         embeddedJsonObject: EmbeddedJsonObject.fromJson(json['_embedded'])
     );
   }

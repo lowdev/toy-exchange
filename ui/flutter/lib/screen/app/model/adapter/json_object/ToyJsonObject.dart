@@ -7,7 +7,7 @@ class ToyJsonObject {
 
   ToyJsonObject({this.id, this.title, this.thumbnail, this.numberOfPieces, this.description});
 
-  factory ToyJsonObject.fromJson(Map<String, dynamic> json) {
+  factory ToyJsonObject.fromJson(dynamic json) {
     return ToyJsonObject(
       id: json['id'],
       title: json['title'],

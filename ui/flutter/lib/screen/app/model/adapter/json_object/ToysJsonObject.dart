@@ -1,12 +1,13 @@
 import 'package:toyexchange/screen/app/model/adapter/json_object/ToyJsonObject.dart';
 
 class ToysJsonObject {
-  List<ToyJsonObject> toys;
+  List<ToyJsonObject> toysAsList;
 
-  ToysJsonObject({this.toys});
+  ToysJsonObject({this.toysAsList});
 
-  factory ToysJsonObject.fromJson(Map<String, dynamic> json) {
-    print(json);
-    return null;
+  factory ToysJsonObject.fromJson(List<dynamic> json) {
+    return ToysJsonObject(
+        toysAsList: json.map((toyAsJson) => ToyJsonObject.fromJson(toyAsJson)).toList()
+    );
   }
 }

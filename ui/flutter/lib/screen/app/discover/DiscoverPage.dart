@@ -28,7 +28,7 @@ class DiscoverPageState extends State<DiscoverPage> {
 
   ToyRepository toyRepository1 = new DummyToyRepository();
   ToyRepository toyRepository = new HttpToyRepository();
-  List<Toy> toys = List();
+  List<Toy> toys = Toys.allToys();
 
   @override
   void initState() {
@@ -38,7 +38,6 @@ class DiscoverPageState extends State<DiscoverPage> {
 
   @override
   Widget build(BuildContext context) {
-    http.get('http://10.0.2.2:8080/toys');
     return new Scaffold(
       appBar: getBar(),
       body: new Padding(
