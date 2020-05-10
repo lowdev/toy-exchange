@@ -50,7 +50,9 @@ class DiscoverPageState extends State<DiscoverPage> {
             return Text("${snapshot.error}");
           }
 
-           return CircularProgressIndicator();
+           return new Center(
+              child: CircularProgressIndicator()
+           );
           }
         )
       )
@@ -95,7 +97,7 @@ class DiscoverPageState extends State<DiscoverPage> {
   }
 
   Widget getBody(BuildContext context, List<Toy> toys) {
-    if (Screens.isLargeScreen(context)) {
+    if (!Screens.isSmartphoneScreen(context)) {
       return GridToyWidget(toys, onclickCallBack);
     }
 

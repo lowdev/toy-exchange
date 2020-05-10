@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toyexchange/screen/utils/Screens.dart';
 import '../model/Toy.dart';
 
 class GridToyWidget extends StatelessWidget {
@@ -6,18 +7,30 @@ class GridToyWidget extends StatelessWidget {
   final List<Toy> toys;
   final Function onClickCallback;
 
-  GridToyWidget(this.toys, this.onClickCallback) { }
+  GridToyWidget(this.toys, this.onClickCallback);
 
   @override
   Widget build(BuildContext context) {
     return GridView.count(
-      crossAxisCount: 2,
+      crossAxisCount: getCount(context),
       children: List.generate(this.toys.length, (index) {
         return Center(
           child: buildToyWidget(context, this.toys[index]),
         );
       }),
     );
+  }
+
+  int getCount(BuildContext context) {
+    if (Screens.isSmartphoneScreen(context)) {
+      return 2;
+    }
+
+    if (Screens.isTabletScreen(context)) {
+      return 2;
+    }
+
+    return 4;
   }
 
   Widget buildToyWidget(BuildContext context, Toy toy) {
