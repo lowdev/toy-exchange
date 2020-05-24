@@ -18,31 +18,21 @@ class ToyCreationPageState extends State<ToyCreationPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      backgroundColor: Colors.white30,
-      appBar: createBar(),
-      body: createBody(context)
+        backgroundColor: Colors.white30,
+        appBar: createBar(),
+        body: createBody(context),
+        floatingActionButton: FloatingActionButton.extended(
+          elevation: 4.0,
+          icon: const Icon(Icons.add),
+          label: const Text('Ajout puzzle'),
+          onPressed: () {},
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat
     );
   }
 
   AppBar createBar() {
-    return new AppBar(
-      elevation: 0,
-      title: Center(
-          child: Container(
-              child: IconButton(
-                icon: Icon(Icons.camera_alt, semanticLabel: "Add"),
-                onPressed: () => {},
-              )
-          )
-      ),
-      flexibleSpace: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [Colors.blue, Colors.yellow]))
-      )
-    );
+    return AppBar();
   }
 
   Widget createBody(BuildContext context) {
