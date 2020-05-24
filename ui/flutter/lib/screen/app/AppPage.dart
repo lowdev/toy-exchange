@@ -10,9 +10,10 @@ class AppPageState extends State<AppPage> {
   int selectedPageChoice = 0;
 
   void selectPage(int pageChoice) {
-    setState(() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => PageChoice.allPage()[pageChoice]));
+    /*setState(() {
       selectedPageChoice = pageChoice;
-    });
+    });*/
   }
 
   @override

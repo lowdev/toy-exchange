@@ -7,10 +7,8 @@ import 'package:toyexchange/screen/app/search/SearchPage.dart';
 import 'package:toyexchange/screen/utils/Screens.dart';
 import '../toywidget/GridToyWidget.dart';
 import 'widget/ListToyWidget.dart';
-import '../model/Toys.dart';
 import '../model/Toy.dart';
 import 'model/LayoutChoice.dart';
-import 'package:http/http.dart' as http;
 
 class DiscoverPage extends StatefulWidget {
   @override

@@ -19,6 +19,7 @@ class ToyCreationPageState extends State<ToyCreationPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       backgroundColor: Colors.white30,
+      appBar: createBar(),
       body: createBody(context)
     );
   }
