@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:image_form_field_x/image_form_field_x.dart';
+import 'dart:io';
+import 'upload_button.dart';
 
 class ToyCreationPage extends StatefulWidget {
+
+  List<String> existingImages = [];
 
   @override
   ToyCreationPageState createState() => ToyCreationPageState();
@@ -8,6 +13,7 @@ class ToyCreationPage extends StatefulWidget {
 
 class ToyCreationPageState extends State<ToyCreationPage> {
   final formKey = GlobalKey<FormState>();
+  List<ImageInputAdapter> _images;
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +65,23 @@ class ToyCreationPageState extends State<ToyCreationPage> {
   }
 
   Widget createUploadImage() {
+    final bool shouldAllowMultiple = true;
+    return ImageFormField<ImageInputAdapter>(
+        maxCount: 1,
+        shouldAllowMultiple: shouldAllowMultiple,
+        onSaved: (val) => _images = val,
+        initialValue: widget.existingImages.map((i) => ImageInputAdapter(url: i)).toList().cast<ImageInputAdapter>(),
+        initializeFileAsImage: (file) => ImageInputAdapter(file: file),
+        buttonBuilder: (_, count) =>
+            PhotoUploadButton(
+                count: count,
+                shouldAllowMultiple: shouldAllowMultiple
+            ),
+        previewImageBuilder: (_, image) => image.widgetize()
+    );
+  }
+
+  Widget createUploadImageCustom() {
     return GestureDetector(
       onTap: () { print("Container was tapped"); },
       child: Row(
@@ -125,5 +148,31 @@ class ToyCreationPageState extends State<ToyCreationPage> {
         return null;
       },
     );
+  }
+}
+
+class ImageInputAdapter {
+  /// Initialize from either a URL or a file, but not both.
+  ImageInputAdapter({
+    this.file,
+    this.url
+  }) : assert(file != null || url != null), assert(file != null && url == null), assert(file == null && url != null);
+
+  /// An image file
+  final File file;
+  /// A direct link to the remote image
+  final String url;
+
+  /// Render the image from a file or from a remote source.
+  Widget widgetize() {
+    if (file != null) {
+      return Image.file(file);
+    } else {
+      return FadeInImage(
+        image: NetworkImage(url),
+        placeholder: AssetImage("assets/images/placeholder.png"),
+        fit: BoxFit.contain,
+      );
+    }
   }
 }
