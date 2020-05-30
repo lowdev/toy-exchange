@@ -8,9 +8,14 @@ import 'package:toyexchange/screen/app/model/adapter/json_object/ToyJsonObject.d
 import 'package:toyexchange/screen/app/model/port/ToyRepository.dart';
 
 class HttpToyRepository implements ToyRepository {
+
+  static const String LOCAL_SERVER = "http://localhost:8080/toys";
+  static const String PROD_SERVER = "https://toy-exchanging.herokuapp.com/toys";
+  static const String SERVER = LOCAL_SERVER;
+
   @override
   Future<List<Toy>> findAll() async {
-    final response = await get("https://toy-exchanging.herokuapp.com/toys", headers: {"Accept":"application/json"});
+    final response = await get(SERVER, headers: {"Accept":"application/json"});
     if (response.statusCode != 200) {
       throw Exception('Failed to load toys');
     }
@@ -37,5 +42,15 @@ class HttpToyRepository implements ToyRepository {
     );
 
     return toy;
+  }
+
+  @override
+  void save(Toy toy) async {
+    final response = await post(SERVER,
+        body: jsonEncode(toy.toJson()),
+        headers: {"content-type": "application/json"});
+    if (response.statusCode != 201) {
+      throw Exception('Failed to load toys');
+    }
   }
 }

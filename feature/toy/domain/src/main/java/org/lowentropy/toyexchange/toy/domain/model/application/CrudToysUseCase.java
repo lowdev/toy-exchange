@@ -3,16 +3,20 @@ package org.lowentropy.toyexchange.toy.domain.model.application;
 import org.lowentropy.toyexchange.toy.domain.model.Toy;
 import org.lowentropy.toyexchange.toy.domain.model.ToyId;
 import org.lowentropy.toyexchange.toy.domain.model.port.ToyReadRepository;
+import org.lowentropy.toyexchange.toy.domain.model.port.ToyWriteRepository;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class GetToysUseCase {
+public class CrudToysUseCase {
 
     private ToyReadRepository toyRepository;
+    private ToyWriteRepository toyWriteRepository;
 
-    public GetToysUseCase(ToyReadRepository toyRepository) {
+    public CrudToysUseCase(ToyReadRepository toyRepository, ToyWriteRepository toyWriteRepository) {
         this.toyRepository = toyRepository;
+        this.toyWriteRepository = toyWriteRepository;
     }
 
     /**
@@ -26,5 +30,9 @@ public class GetToysUseCase {
 
     public Optional<Toy> findToy(UUID id) {
         return toyRepository.findById(new ToyId(id));
+    }
+
+    public ToyId save(Toy toy) {
+        return toyWriteRepository.save(toy);
     }
 }

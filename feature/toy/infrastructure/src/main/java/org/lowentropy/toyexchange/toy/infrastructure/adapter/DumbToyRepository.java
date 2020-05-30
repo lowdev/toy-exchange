@@ -2,15 +2,13 @@ package org.lowentropy.toyexchange.toy.infrastructure.adapter;
 
 import org.lowentropy.toyexchange.toy.domain.model.*;
 import org.lowentropy.toyexchange.toy.domain.model.port.ToyReadRepository;
+import org.lowentropy.toyexchange.toy.domain.model.port.ToyWriteRepository;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
-public class DumbToyRepository implements ToyReadRepository {
+public class DumbToyRepository implements ToyReadRepository, ToyWriteRepository {
 
-    private List<Toy> toys = Arrays.asList(
+    private List<Toy> toys = new ArrayList<>(Arrays.asList(
             Toy.builder()
                     .withId(new ToyId(UUID.randomUUID()))
                     .withTitle(new Title("Puzzle 1000 p - Photo de groupe Disney (Panorama)"))
@@ -53,7 +51,7 @@ public class DumbToyRepository implements ToyReadRepository {
                     .withNumberOfPieces(1000)
                     .withDescription(new Description("No description"))
                     .build()
-    );
+    ));
 
     @Override
     public List<Toy> findAll() {
@@ -65,5 +63,11 @@ public class DumbToyRepository implements ToyReadRepository {
         return toys.stream()
                 .filter(toy -> toy.hasSameId(id))
                 .findFirst();
+    }
+
+    @Override
+    public ToyId save(Toy toy) {
+        toys.add(toy);
+        return toy.getId();
     }
 }

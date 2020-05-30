@@ -25,9 +25,13 @@ public class Toy {
         return this.id.equals(id);
     }
 
+    public ToyId getId() {
+        return this.id;
+    }
+
     public static class Builder {
-        public ToyId toyId;
-        public int numberOfPieces;
+        private ToyId toyId;
+        private int numberOfPieces;
         private Title title;
         private Description description;
         private Thumbnail thumbnail = Thumbnail.NO_THUMBNAIL;;

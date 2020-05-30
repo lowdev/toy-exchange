@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:toyexchange/common/my_custom_icons_icons.dart';
-import 'package:toyexchange/screen/app/model/Toy.dart';
-import 'package:toyexchange/screen/app/model/Toys.dart';
-import 'package:toyexchange/screen/app/toywidget/GridToyWidget.dart';
+import 'package:toyexchange/screen/app/profile/selling/SellingPage.dart';
 
 class ProfilePage extends StatelessWidget {
-
-  final List<Toy> toys = Toys.allToys();
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +21,7 @@ class ProfilePage extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            createMyPuzzleBody(context),
+            new SellingPage(),
             Icon(Icons.favorite),
             Icon(Icons.person),
           ],
@@ -46,9 +42,5 @@ class ProfilePage extends StatelessWidget {
         ),
       )
     );
-  }
-
-  Widget createMyPuzzleBody(BuildContext context) {
-    return new GridToyWidget(toys, (BuildContext context, Toy toy) => () => print("ici") );
   }
 }

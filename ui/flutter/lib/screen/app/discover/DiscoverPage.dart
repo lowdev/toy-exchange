@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toyexchange/screen/app/discover/widget/toy/ToyPage.dart';
-import 'package:toyexchange/screen/app/model/adapter/DummyToyRepository.dart';
-import 'package:toyexchange/screen/app/model/adapter/HttpToyRepository.dart';
+import 'package:toyexchange/screen/app/model/adapter/ToyRepositoryFactory.dart';
 import 'package:toyexchange/screen/app/model/port/ToyRepository.dart';
 import 'package:toyexchange/screen/app/search/SearchPage.dart';
 import 'package:toyexchange/screen/utils/Screens.dart';
@@ -24,8 +23,7 @@ class DiscoverPageState extends State<DiscoverPage> {
     });
   }
 
-  ToyRepository toyRepository1 = new DummyToyRepository();
-  ToyRepository toyRepository = new HttpToyRepository();
+  ToyRepository toyRepository = ToyRepositoryFactory.getToyRepository();
   Future<List<Toy>> futureToys;
 
   @override

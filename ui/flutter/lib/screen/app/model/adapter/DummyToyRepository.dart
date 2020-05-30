@@ -2,10 +2,10 @@ import 'package:toyexchange/screen/app/model/Toy.dart';
 import 'package:toyexchange/screen/app/model/port/ToyRepository.dart';
 
 class DummyToyRepository implements ToyRepository {
-  @override
-  Future<List<Toy>> findAll() {
-    var toys = new List<Toy>();
 
+  var toys = new List<Toy>();
+
+  DummyToyRepository() {
     toys.add(new Toy(
         name:"Puzzle Vaiana",
         numberOfPieces: 49,
@@ -18,6 +18,15 @@ class DummyToyRepository implements ToyRepository {
         images: ["https://media.paruvendu.fr/image/puzzle-hercule/WB14/7/9/WB147985922_1.jpeg"],
         description: ""
     ));
+  }
+
+  @override
+  Future<List<Toy>> findAll() {
     return Future.value(toys);
+  }
+
+  @override
+  void save(Toy toy) {
+    toys.add(toy);
   }
 }

@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:image_form_field_x/image_form_field_x.dart';
+import 'package:toyexchange/screen/app/model/Toy.dart';
+import 'package:toyexchange/screen/app/model/adapter/ToyRepositoryFactory.dart';
+import 'package:toyexchange/screen/app/model/port/ToyRepository.dart';
 import 'dart:io';
 import 'upload_button.dart';
 
+
 class ToyCreationPage extends StatefulWidget {
 
-  List<String> existingImages = [];
+  final ToyRepository toyRepository = ToyRepositoryFactory.getToyRepository();
+  final List<String> existingImages = [];
 
   @override
   ToyCreationPageState createState() => ToyCreationPageState();
 }
 
 class ToyCreationPageState extends State<ToyCreationPage> {
-  final formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   List<ImageInputAdapter> _images;
+  Toy toy = Toy();
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +31,11 @@ class ToyCreationPageState extends State<ToyCreationPage> {
           elevation: 4.0,
           icon: const Icon(Icons.add),
           label: const Text('Ajout puzzle'),
-          onPressed: () {},
+          onPressed: () {
+            _formKey.currentState.save();
+            widget.toyRepository.save(this.toy);
+            Navigator.pop(context);
+          },
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat
     );
@@ -36,20 +46,25 @@ class ToyCreationPageState extends State<ToyCreationPage> {
   }
 
   Widget createBody(BuildContext context) {
-    return  Form(
-        key: formKey,
+    return Form(
+        key: _formKey,
         child: Column (
           children: <Widget>[
-            new Card(child: createUploadImage()),
-            new Card(child:
-              Column(
-                children: [
-                  createTitleInput(),
-                  createDescriptionInput()
-                ]
-              )
+            createUploadImage(),
+            Padding(
+              padding: EdgeInsets.all(16.0),
+              child:
+                Column(
+                  children: [
+                    createTitleInput(),
+                    createDescriptionInput()
+                  ]
+                )
             ),
-            new Card(child: createNumberOfPieceInput())
+            new Padding(
+              padding: EdgeInsets.all(16.0),
+              child: createNumberOfPieceInput()
+            ),
           ],
         )
     );
@@ -60,7 +75,7 @@ class ToyCreationPageState extends State<ToyCreationPage> {
     return ImageFormField<ImageInputAdapter>(
         maxCount: 1,
         shouldAllowMultiple: shouldAllowMultiple,
-        onSaved: (val) => _images = val,
+        onSaved: (val) => this.toy.images = ["https://fr.zenit.org/wp-content/uploads/2018/05/no-image-icon-1536x1536.png"],
         initialValue: widget.existingImages.map((i) => ImageInputAdapter(url: i)).toList().cast<ImageInputAdapter>(),
         initializeFileAsImage: (file) => ImageInputAdapter(file: file),
         buttonBuilder: (_, count) =>
@@ -109,6 +124,9 @@ class ToyCreationPageState extends State<ToyCreationPage> {
         }
         return null;
       },
+      onSaved: (String value) {
+        toy.name = value;
+      },
     );
   }
 
@@ -122,6 +140,9 @@ class ToyCreationPageState extends State<ToyCreationPage> {
           return "A remplir";
         }
         return null;
+      },
+      onSaved: (String value) {
+        toy.numberOfPieces = int.parse(value);
       },
     );
   }
@@ -137,6 +158,9 @@ class ToyCreationPageState extends State<ToyCreationPage> {
           return "A remplir";
         }
         return null;
+      },
+      onSaved: (String value) {
+        toy.description = value;
       },
     );
   }
