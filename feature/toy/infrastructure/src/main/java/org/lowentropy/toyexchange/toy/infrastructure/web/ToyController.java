@@ -37,7 +37,7 @@ public class ToyController {
 
     @GetMapping("/{toyId}")
     public ResponseEntity<EntityModel<ToyRepresentationModel>> findToy(@PathVariable UUID toyId) {
-        return crudToysUseCase.findToy(toyId)
+        return crudToysUseCase.findToy(new ToyId(toyId))
                 .map(toy -> ResponseEntity.ok(resourceWithLinkToCheckoutSelf(toy)))
                 .orElse(notFound().build());
     }
@@ -58,6 +58,12 @@ public class ToyController {
                 methodOn(ToyController.class).findToy(toyId.getToyId())
             ).withSelfRel().toUri()
         ).build();
+    }
+
+    @DeleteMapping("/{toyId}")
+    public ResponseEntity deleteToy(@PathVariable UUID toyId) {
+        crudToysUseCase.delete(new ToyId(toyId));
+        return ResponseEntity.noContent().build();
     }
 
     private EntityModel<ToyRepresentationModel> resourceWithLinkToCheckoutSelf(Toy toy) {

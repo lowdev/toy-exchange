@@ -5,4 +5,6 @@ import org.lowentropy.toyexchange.toy.domain.model.ToyId;
 
 public interface ToyWriteRepository {
     ToyId save(Toy toy);
+
+    void delete(ToyId toyId);
 }

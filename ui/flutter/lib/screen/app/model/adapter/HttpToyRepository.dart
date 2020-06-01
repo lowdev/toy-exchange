@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:http/http.dart';
+import 'package:http/http.dart' as Http;
 import 'package:toyexchange/screen/app/model/Toy.dart';
 import 'package:toyexchange/screen/app/model/adapter/json_object/RootJsonObject.dart';
 import 'package:toyexchange/screen/app/model/adapter/json_object/ToyJsonObject.dart';
@@ -15,7 +15,7 @@ class HttpToyRepository implements ToyRepository {
 
   @override
   Future<List<Toy>> findAll() async {
-    final response = await get(SERVER, headers: {"Accept":"application/json"});
+    final response = await Http.get(SERVER, headers: {"Accept":"application/json"});
     if (response.statusCode != 200) {
       throw Exception('Failed to load toys');
     }
@@ -35,6 +35,7 @@ class HttpToyRepository implements ToyRepository {
 
   Toy toToy(ToyJsonObject toyAsJsonObject) {
     var toy = new Toy(
+        id: toyAsJsonObject.id,
         name: toyAsJsonObject.title,
         numberOfPieces: int.parse(toyAsJsonObject.numberOfPieces),
         images: [toyAsJsonObject.thumbnail],
@@ -46,11 +47,19 @@ class HttpToyRepository implements ToyRepository {
 
   @override
   void save(Toy toy) async {
-    final response = await post(SERVER,
+    final response = await Http.post(SERVER,
         body: jsonEncode(toy.toJson()),
         headers: {"content-type": "application/json"});
     if (response.statusCode != 201) {
-      throw Exception('Failed to load toys');
+      throw Exception('Failed to save toy');
+    }
+  }
+
+  @override
+  void delete(String id) async {
+    final response = await Http.delete(SERVER + "/$id");
+    if (response.statusCode != 200) {
+      throw Exception('Failed to delete toy');
     }
   }
 }

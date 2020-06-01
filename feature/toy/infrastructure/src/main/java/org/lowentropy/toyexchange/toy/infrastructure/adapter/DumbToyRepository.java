@@ -70,4 +70,9 @@ public class DumbToyRepository implements ToyReadRepository, ToyWriteRepository 
         toys.add(toy);
         return toy.getId();
     }
+
+    @Override
+    public void delete(ToyId toyId) {
+        toys.removeIf(toy -> toyId.equals(toy.getId()));
+    }
 }

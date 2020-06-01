@@ -40,12 +40,14 @@ class DiscoverPageState extends State<DiscoverPage> {
         padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
         child: FutureBuilder<List<Toy>>(
           future: futureToys,
-          builder: (context, snapshot) {if (snapshot.hasData) {
-            return getBody(context, snapshot.data);
-          } else if (snapshot.hasError) {
-            return Text("${snapshot.error}");
-          }
-
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return getBody(context, snapshot.data);
+            }
+            if (snapshot.hasError) {
+              return Text("${snapshot.error}");
+            }
+  
            return new Center(
               child: CircularProgressIndicator()
            );

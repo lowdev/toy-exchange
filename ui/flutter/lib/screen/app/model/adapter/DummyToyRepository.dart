@@ -29,4 +29,9 @@ class DummyToyRepository implements ToyRepository {
   void save(Toy toy) {
     toys.add(toy);
   }
+
+  @override
+  void delete(String id) {
+    toys.removeWhere((element) => element.id == id);
+  }
 }

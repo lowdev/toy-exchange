@@ -7,7 +7,6 @@ import org.lowentropy.toyexchange.toy.domain.model.port.ToyWriteRepository;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 public class CrudToysUseCase {
 
@@ -28,11 +27,15 @@ public class CrudToysUseCase {
         return toyRepository.findAll();
     }
 
-    public Optional<Toy> findToy(UUID id) {
-        return toyRepository.findById(new ToyId(id));
+    public Optional<Toy> findToy(ToyId id) {
+        return toyRepository.findById(id);
     }
 
     public ToyId save(Toy toy) {
         return toyWriteRepository.save(toy);
+    }
+
+    public void delete(ToyId toyId) {
+        toyWriteRepository.delete(toyId);
     }
 }
