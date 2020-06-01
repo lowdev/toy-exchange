@@ -7,9 +7,7 @@ import 'package:toyexchange/screen/app/model/adapter/ToyRepositoryFactory.dart';
 
 class SellingPage extends StatefulWidget {
 
-  ToyRepository toyRepository = ToyRepositoryFactory.getToyRepository();
-
-  Future<List<Toy>> futureToys;
+  final ToyRepository toyRepository = ToyRepositoryFactory.getToyRepository();
 
   @override
   SellingPageState createState() => SellingPageState();
@@ -17,13 +15,12 @@ class SellingPage extends StatefulWidget {
 
 class SellingPageState extends State<SellingPage> {
 
-  ToyRepository toyRepository = ToyRepositoryFactory.getToyRepository();
   Future<List<Toy>> futureToys;
 
   @override
   void initState() {
     super.initState();
-    futureToys = toyRepository.findAll();
+    futureToys = widget.toyRepository.findAll();
   }
 
   @override
@@ -33,7 +30,7 @@ class SellingPageState extends State<SellingPage> {
         future: futureToys,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return GridToyWidget(snapshot.data, onclickCallBack );
+            return GridToyWidget(snapshot.data, onclickCallBack);
           } else if (snapshot.hasError) {
             return Text("${snapshot.error}");
           }
@@ -45,6 +42,18 @@ class SellingPageState extends State<SellingPage> {
     );
   }
 
-  final Function onclickCallBack = (BuildContext context, Toy toy) =>
-      () => Navigator.push(context, MaterialPageRoute(builder: (context) =>  new MyToyPage(toy)));
+  Function onclickCallBack(BuildContext context, Toy toy) {
+     return () => Navigator.push(context, MaterialPageRoute(builder: (context) => new MyToyPage(toy)))
+        .then((shouldRefresh) {
+          if (shouldRefresh) {
+            refresh();
+          }
+        });
+  }
+
+  void refresh() {
+    setState(() {
+      futureToys = widget.toyRepository.findAll();
+    });
+  }
 }

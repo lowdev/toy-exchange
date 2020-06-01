@@ -83,7 +83,7 @@ class MyToyPageState extends State<MyToyPage> {
           }
       ).then((val) {
         if (ConfirmAction.YES == val) {
-          Navigator.pop(context);
+          Navigator.pop(context, true);
         }
       });
     }
