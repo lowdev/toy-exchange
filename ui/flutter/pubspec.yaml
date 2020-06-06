@@ -29,6 +29,8 @@ dependencies:
   flappy_search_bar: 1.4.1
   http: 0.12.1
   image_form_field_x: 0.0.8
+  firebase: 7.3.0
+  firebase_auth: 0.16.1
 
 dev_dependencies:
   flutter_test:

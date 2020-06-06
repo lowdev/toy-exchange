@@ -6,6 +6,8 @@ import 'package:toyexchange/screen/app/model/Toy.dart';
 import 'package:toyexchange/screen/app/model/adapter/json_object/RootJsonObject.dart';
 import 'package:toyexchange/screen/app/model/adapter/json_object/ToyJsonObject.dart';
 import 'package:toyexchange/screen/app/model/port/ToyRepository.dart';
+import 'package:toyexchange/screen/service/AuthService.dart';
+import 'package:toyexchange/screen/service/FirebaseAuthServiceFactory.dart';
 
 class HttpToyRepository implements ToyRepository {
 
@@ -13,9 +15,12 @@ class HttpToyRepository implements ToyRepository {
   static const String PROD_SERVER = "https://toy-exchanging.herokuapp.com/toys";
   static const String SERVER = LOCAL_SERVER;
 
+  final AuthService _authService = AuthServiceFactory.getAuthService();
+
   @override
   Future<List<Toy>> findAll() async {
-    final response = await Http.get(SERVER, headers: {"Accept":"application/json"});
+
+    final response = await Http.get(SERVER, headers: { "Accept": "application/json", "Firebase-token": _authService.getToken() });
     if (response.statusCode != 200) {
       throw Exception('Failed to load toys');
     }

@@ -1,11 +1,13 @@
 package org.lowentropy.toyexchange.toy.infrastructure.web;
 
+import com.google.firebase.auth.FirebaseToken;
 import org.lowentropy.toyexchange.toy.domain.model.*;
 import org.lowentropy.toyexchange.toy.domain.model.application.CrudToysUseCase;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +20,7 @@ import static org.springframework.http.ResponseEntity.notFound;
 
 @RestController
 @RequestMapping("toys")
-public class ToyController {
+public class ToyController implements BaseToyController {
     private CrudToysUseCase crudToysUseCase;
 
     public ToyController(CrudToysUseCase crudToysUseCase) {
@@ -64,13 +66,5 @@ public class ToyController {
     public ResponseEntity deleteToy(@PathVariable UUID toyId) {
         crudToysUseCase.delete(new ToyId(toyId));
         return ResponseEntity.noContent().build();
-    }
-
-    private EntityModel<ToyRepresentationModel> resourceWithLinkToCheckoutSelf(Toy toy) {
-        return new EntityModel<>(
-                new ToyRepresentationModel(toy.toMap()),
-                linkTo(
-                        methodOn(ToyController.class).findToy(UUID.fromString(toy.toMap().get(ToyField.ID))))
-                        .withSelfRel());
     }
 }
