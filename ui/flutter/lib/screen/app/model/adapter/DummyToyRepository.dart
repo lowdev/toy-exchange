@@ -26,6 +26,11 @@ class DummyToyRepository implements ToyRepository {
   }
 
   @override
+  Future<List<Toy>> findAllMyToys() {
+    throw UnimplementedError();
+  }
+
+  @override
   void save(Toy toy) {
     toys.add(toy);
   }

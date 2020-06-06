@@ -20,7 +20,7 @@ class SellingPageState extends State<SellingPage> {
   @override
   void initState() {
     super.initState();
-    futureToys = widget.toyRepository.findAll();
+    futureToys = widget.toyRepository.findAllMyToys();
   }
 
   @override
@@ -53,7 +53,7 @@ class SellingPageState extends State<SellingPage> {
 
   void refresh() {
     setState(() {
-      futureToys = widget.toyRepository.findAll();
+      futureToys = widget.toyRepository.findAllMyToys();
     });
   }
 }

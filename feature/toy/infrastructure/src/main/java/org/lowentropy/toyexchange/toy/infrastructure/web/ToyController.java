@@ -43,28 +43,4 @@ public class ToyController implements BaseToyController {
                 .map(toy -> ResponseEntity.ok(resourceWithLinkToCheckoutSelf(toy)))
                 .orElse(notFound().build());
     }
-
-    @PostMapping
-    public ResponseEntity save(@RequestBody NewToyRequest newToyRequest) {
-        ToyId toyId = crudToysUseCase.save(Toy.builder()
-                .withId(new ToyId(UUID.randomUUID()))
-                .withTitle(new Title(newToyRequest.getTitle()))
-                .withDescription(new Description(newToyRequest.getDescription()))
-                .withNumberOfPieces(newToyRequest.getNumberOfPieces())
-                .withThumbnail(new Thumbnail(newToyRequest.getImages().get(0)))
-                .build()
-        );
-
-        return ResponseEntity.created(
-            linkTo(
-                methodOn(ToyController.class).findToy(toyId.getToyId())
-            ).withSelfRel().toUri()
-        ).build();
-    }
-
-    @DeleteMapping("/{toyId}")
-    public ResponseEntity deleteToy(@PathVariable UUID toyId) {
-        crudToysUseCase.delete(new ToyId(toyId));
-        return ResponseEntity.noContent().build();
-    }
 }

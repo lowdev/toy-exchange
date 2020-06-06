@@ -11,34 +11,42 @@ import 'package:toyexchange/screen/service/FirebaseAuthServiceFactory.dart';
 
 class HttpToyRepository implements ToyRepository {
 
-  static const String LOCAL_SERVER = "http://localhost:8080/toys";
-  static const String PROD_SERVER = "https://toy-exchanging.herokuapp.com/toys";
+  static const String LOCAL_SERVER = "http://localhost:8080";
+  static const String PROD_SERVER = "https://toy-exchanging.herokuapp.com";
   static const String SERVER = LOCAL_SERVER;
 
   final AuthService _authService = AuthServiceFactory.getAuthService();
 
   @override
   Future<List<Toy>> findAll() async {
+    return _baseFindAll(SERVER + "/toys");
+  }
 
-    final response = await Http.get(SERVER, headers: { "Accept": "application/json", "Firebase-token": _authService.getToken() });
+  @override
+  Future<List<Toy>> findAllMyToys() async {
+    return _baseFindAll(SERVER + "/me/toys");
+  }
+
+  Future<List<Toy>> _baseFindAll(String url) async {
+    final response = await Http.get(url, headers: _generateHeader());
     if (response.statusCode != 200) {
       throw Exception('Failed to load toys');
     }
-    RootJsonObject rootJsonObject = toToysJsonObject(response.body);
+    RootJsonObject rootJsonObject = _toToysJsonObject(response.body);
 
-    return new Future.value(toToys(rootJsonObject));
+    return new Future.value(_toToys(rootJsonObject));
   }
 
-  RootJsonObject toToysJsonObject(String body) {
+  RootJsonObject _toToysJsonObject(String body) {
     return RootJsonObject.fromJson(json.decode(body));
   }
 
-  List<Toy> toToys(RootJsonObject rootJsonObject) {
+  List<Toy> _toToys(RootJsonObject rootJsonObject) {
     return rootJsonObject.embeddedJsonObject.toys.toysAsList
-        .map((toyAsJsonObject) => toToy(toyAsJsonObject)).toList();
+        .map((toyAsJsonObject) => _toToy(toyAsJsonObject)).toList();
   }
 
-  Toy toToy(ToyJsonObject toyAsJsonObject) {
+  Toy _toToy(ToyJsonObject toyAsJsonObject) {
     var toy = new Toy(
         id: toyAsJsonObject.id,
         name: toyAsJsonObject.title,
@@ -52,9 +60,9 @@ class HttpToyRepository implements ToyRepository {
 
   @override
   void save(Toy toy) async {
-    final response = await Http.post(SERVER,
+    final response = await Http.post(SERVER + "/me/toys",
         body: jsonEncode(toy.toJson()),
-        headers: {"content-type": "application/json"});
+        headers: _generateHeader());
     if (response.statusCode != 201) {
       throw Exception('Failed to save toy');
     }
@@ -62,9 +70,17 @@ class HttpToyRepository implements ToyRepository {
 
   @override
   void delete(String id) async {
-    final response = await Http.delete(SERVER + "/$id");
+    final response = await Http.delete(SERVER + "/me/toys" + "/$id", headers: _generateHeader());
     if (response.statusCode != 200) {
       throw Exception('Failed to delete toy');
     }
+  }
+
+  Map<String, String> _generateHeader() {
+    return {
+      "Accept": "application/json",
+      "content-type": "application/json",
+      "Firebase-token": _authService.getToken()
+    };
   }
 }

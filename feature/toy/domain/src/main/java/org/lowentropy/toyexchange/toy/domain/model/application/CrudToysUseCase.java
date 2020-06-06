@@ -37,8 +37,18 @@ public class CrudToysUseCase {
         return toyWriteRepository.save(toy);
     }
 
-    public void delete(ToyId toyId) {
+    public void delete(Owner owner, ToyId toyId) {
+        checkIfUserCanDeleteToy(owner, toyId);
         toyWriteRepository.delete(toyId);
+    }
+
+    private void checkIfUserCanDeleteToy(Owner owner, ToyId toyId) {
+        Optional<Toy> toyOptional = toyRepository.findById(toyId);
+        Toy toy = toyOptional.orElseThrow(() -> new IllegalArgumentException("Toy has been already deleted"));
+
+        if (!toy.isOwner(owner)) {
+            throw new IllegalArgumentException("You are not owner of this toy !!!");
+        }
     }
 
     public List<Toy> findAllMyToys(Owner owner) {
