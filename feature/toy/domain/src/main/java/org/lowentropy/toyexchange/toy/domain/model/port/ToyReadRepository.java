@@ -1,5 +1,7 @@
 package org.lowentropy.toyexchange.toy.domain.model.port;
 
+import org.lowentropy.toyexchange.toy.domain.model.Email;
+import org.lowentropy.toyexchange.toy.domain.model.Owner;
 import org.lowentropy.toyexchange.toy.domain.model.Toy;
 import org.lowentropy.toyexchange.toy.domain.model.ToyId;
 
@@ -10,4 +12,6 @@ public interface ToyReadRepository {
     List<Toy> findAll();
 
     Optional<Toy> findById(ToyId id);
+
+    List<Toy> findAllMyToys(Owner owner);
 }

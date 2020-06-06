@@ -1,5 +1,7 @@
 package org.lowentropy.toyexchange.toy.domain.model.application;
 
+import org.lowentropy.toyexchange.toy.domain.model.Email;
+import org.lowentropy.toyexchange.toy.domain.model.Owner;
 import org.lowentropy.toyexchange.toy.domain.model.Toy;
 import org.lowentropy.toyexchange.toy.domain.model.ToyId;
 import org.lowentropy.toyexchange.toy.domain.model.port.ToyReadRepository;
@@ -37,5 +39,9 @@ public class CrudToysUseCase {
 
     public void delete(ToyId toyId) {
         toyWriteRepository.delete(toyId);
+    }
+
+    public List<Toy> findAllMyToys(Owner owner) {
+        return toyRepository.findAllMyToys(owner);
     }
 }

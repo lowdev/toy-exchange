@@ -8,6 +8,7 @@ public class Toy {
     }
 
     private ToyId id;
+    private Owner owner;
     private Title title;
     private Description description;
     private Thumbnail thumbnail;
@@ -16,6 +17,7 @@ public class Toy {
     public Toy(Builder builder) {
         this.id = builder.toyId;
         this.title = builder.title;
+        this.owner = builder.owner;
         this.description = builder.description;
         this.thumbnail = builder.thumbnail;
         this.numberOfPieces = builder.numberOfPieces;
@@ -29,12 +31,17 @@ public class Toy {
         return this.id;
     }
 
+    public boolean isOwner(Owner owner) {
+        return this.owner.equals(owner);
+    }
+
     public static class Builder {
         private ToyId toyId;
         private int numberOfPieces;
         private Title title;
         private Description description;
         private Thumbnail thumbnail = Thumbnail.NO_THUMBNAIL;;
+        private Owner owner;
 
         public Builder withId(ToyId id) {
             this.toyId = id;
@@ -58,6 +65,11 @@ public class Toy {
 
         public Builder withNumberOfPieces(int numberOfPieces) {
             this.numberOfPieces = numberOfPieces;
+            return this;
+        }
+
+        public Builder withOwner(Owner owner) {
+            this.owner = owner;
             return this;
         }
 

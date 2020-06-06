@@ -103,6 +103,27 @@ This is HAL format. [http://stateless.co/hal_specification.html](http://stateles
     }
 }
 ```
+
+Two controllers :
+- ToyController
+- MeController
+- UserController
+
+Which one should manage to get toys by user ?
+- UserController: GET users/1/toys
+UserController will need to have toys domain, i don't like this idea to create a link
+between this two domains for the moment.
+
+- ToyController: GET toys/current_user
+ToyController is a preferable approach in my opinions
+
+- MeController: GET me/toys
+MeController will be in toys domain, this approach is class and look like to facebook
+rest api.
+
+I will go with MeController
+
+
 #### GraphQL
 
 ### UI
