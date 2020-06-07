@@ -19,7 +19,7 @@ class HttpToyRepository implements ToyRepository {
 
   @override
   Future<List<Toy>> findAll() async {
-    return _baseFindAll(SERVER + "/toys");
+    return _baseFindAll(SERVER + "/toys?excludeMyToys=true");
   }
 
   @override

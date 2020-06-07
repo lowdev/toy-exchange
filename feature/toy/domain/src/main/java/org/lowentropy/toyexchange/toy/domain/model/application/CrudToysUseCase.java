@@ -7,6 +7,7 @@ import org.lowentropy.toyexchange.toy.domain.model.ToyId;
 import org.lowentropy.toyexchange.toy.domain.model.port.ToyReadRepository;
 import org.lowentropy.toyexchange.toy.domain.model.port.ToyWriteRepository;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,8 +26,8 @@ public class CrudToysUseCase {
      *
      * @return
      */
-    public List<Toy> getAllToys() {
-        return toyRepository.findAll();
+    public List<Toy> getAllToys(Owner owner, Boolean excludeMyToys) {
+        return toyRepository.findAll(owner, excludeMyToys);
     }
 
     public Optional<Toy> findToy(ToyId id) {

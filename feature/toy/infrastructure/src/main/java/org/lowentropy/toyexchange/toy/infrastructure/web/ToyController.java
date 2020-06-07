@@ -28,13 +28,16 @@ public class ToyController implements BaseToyController {
     }
 
     @GetMapping
-    public ResponseEntity<CollectionModel<EntityModel<ToyRepresentationModel>>> getToys() {
+    public ResponseEntity<CollectionModel<EntityModel<ToyRepresentationModel>>> getToys(Authentication authentication, SearchRequest searchRequest) {
+        FirebaseToken firebaseToken = (FirebaseToken) authentication.getPrincipal();
+        Owner owner = new Owner(new Email(firebaseToken.getEmail()));
+
         List<EntityModel<ToyRepresentationModel>> toyRepresentationModels =
-                crudToysUseCase.getAllToys().stream()
+                crudToysUseCase.getAllToys(owner, searchRequest.getExcludeMyToys()).stream()
                         .map(toy -> resourceWithLinkToCheckoutSelf(toy))
                         .collect(Collectors.toList());
 
-        return ResponseEntity.ok(new CollectionModel<>(toyRepresentationModels, linkTo(methodOn(ToyController.class).getToys()).withSelfRel()));
+        return ResponseEntity.ok(new CollectionModel<>(toyRepresentationModels, linkTo(methodOn(ToyController.class).getToys(authentication, searchRequest)).withSelfRel()));
     }
 
     @GetMapping("/{toyId}")

@@ -61,7 +61,13 @@ public class DumbToyRepository implements ToyReadRepository, ToyWriteRepository 
     ));
 
     @Override
-    public List<Toy> findAll() {
+    public List<Toy> findAll(Owner owner, Boolean excludeMyToys) {
+        if (excludeMyToys) {
+            return toys.stream()
+                    .filter(toy -> !toy.isOwner(owner))
+                    .collect(Collectors.toList());
+        }
+
         return toys;
     }
 
