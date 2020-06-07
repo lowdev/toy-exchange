@@ -31,11 +31,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     FirebaseApp initFirebase(ResourceLoader resourceLoader) throws IOException {
-        Resource resource = resourceLoader.getResource(
-                "classpath:serviceAccountKey.json");
+        FileInputStream fileInputStream = new FileInputStream(
+                "C:\\dev\\projects\\appProjects\\toy-exchange\\serviceAccountKey.json");
 
         FirebaseOptions options = new FirebaseOptions.Builder()
-                .setCredentials(createGoogleCredentials(resource.getInputStream()))
+                .setCredentials(createGoogleCredentials(fileInputStream))
                 .setDatabaseUrl("https://toy-exchange.firebaseio.com")
                 .build();
 
