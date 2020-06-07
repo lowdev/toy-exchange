@@ -12,10 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 
 @EnableWebSecurity
 @Configuration
@@ -30,16 +27,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    FirebaseApp initFirebase(ResourceLoader resourceLoader) throws IOException {
-        FileInputStream fileInputStream = new FileInputStream(
-                "C:\\dev\\projects\\appProjects\\toy-exchange\\serviceAccountKey.json");
-
+    FirebaseApp initFirebase(ResourceLoader resourceLoader) {
         FirebaseOptions options = new FirebaseOptions.Builder()
-                .setCredentials(createGoogleCredentials(fileInputStream))
+                .setCredentials(createGoogleCredentials(getServiceAccount()))
                 .setDatabaseUrl("https://toy-exchange.firebaseio.com")
                 .build();
 
        return FirebaseApp.initializeApp(options);
+    }
+
+    private InputStream getServiceAccount() {
+        try {
+            return new FileInputStream(
+                    "C:\\dev\\projects\\appProjects\\toy-exchange\\serviceAccountKey.json");
+        } catch (FileNotFoundException e) {
+            String serviceAccount = System.getenv("SERVICE_ACCOUNT");
+            return new ByteArrayInputStream(serviceAccount.getBytes());
+        }
     }
 
     private InputStream createInputStream(String serviceAccountJson) {
