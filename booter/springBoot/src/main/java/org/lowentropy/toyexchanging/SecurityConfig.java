@@ -5,7 +5,6 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -19,11 +18,14 @@ import java.io.*;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-            .cors().and()
-                .addFilterAfter(new FirebaseAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
+        http
+                .csrf().disable()
+                .cors()
+                .and()
+                    .addFilterAfter(new FirebaseAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                .anyRequest().authenticated();
+                    .antMatchers("/flutter/**").permitAll()
+                    .antMatchers("/**").authenticated();
     }
 
     @Bean

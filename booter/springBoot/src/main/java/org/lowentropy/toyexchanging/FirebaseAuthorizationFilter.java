@@ -2,6 +2,7 @@ package org.lowentropy.toyexchanging;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
@@ -19,9 +20,11 @@ import org.springframework.web.filter.OncePerRequestFilter;
 public class FirebaseAuthorizationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String firebaseTokenAsString = request.getHeader("Firebase-token");
-        FirebaseToken firebaseToken = verifyIdTokenAsync(firebaseTokenAsString);
-        setUpSpringAuthentication(firebaseToken);
+        Optional.ofNullable(request.getHeader("Firebase-token")).ifPresent(token -> {
+            FirebaseToken firebaseToken = verifyIdTokenAsync(token);
+            setUpSpringAuthentication(firebaseToken);
+        });
+
         filterChain.doFilter(request, response);
     }
 
