@@ -3,8 +3,9 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+import 'package:toyexchange/common/environment.dart';
 import 'package:toyexchange/screen/service/AuthService.dart';
-import 'package:toyexchange/screen/service/FirebaseAuthServiceFactory.dart';
+import 'package:toyexchange/screen/service/AuthServiceFactory.dart';
 
 class LoginPage extends StatefulWidget {
   final AuthService _authService = AuthServiceFactory.getAuthService();
@@ -25,6 +26,10 @@ class _LoginPageState extends State<LoginPage> {
 
   // Check if form is valid before perform login or signup
   bool validateAndSave() {
+    if (!Environment.isProd) {
+      return true;
+    }
+
     final form = _formKey.currentState;
     if (form.validate()) {
       form.save();

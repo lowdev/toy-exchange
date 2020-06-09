@@ -1,5 +1,4 @@
 import 'package:firebase/firebase.dart';
-import 'package:firebase/firebase.dart';
 import 'package:flutter/material.dart';
 import 'package:toyexchange/common/theme.dart';
 import 'package:toyexchange/screen/app/AppPage.dart';

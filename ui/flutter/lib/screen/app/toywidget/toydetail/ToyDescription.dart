@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ToyDescription extends StatelessWidget {
-  ToyDescription(this.description);
+  ToyDescription(this.title, this.description);
 
+  final String title;
   final String description;
 
   @override
@@ -14,7 +15,7 @@ class ToyDescription extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Description',
+          this.title,
           style: textTheme.subhead.copyWith(fontSize: 18.0),
         ),
         SizedBox(height: 8.0),

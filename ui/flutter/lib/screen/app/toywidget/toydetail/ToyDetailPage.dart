@@ -21,7 +21,7 @@ class ToyDetailPage extends StatelessWidget {
                   child: new Card(
                       child: Padding(
                           padding: const EdgeInsets.all(20.0),
-                          child: new ToyDescription(this.toy.description)
+                          child: new ToyDescription("Description", this.toy.description)
                       )
                   )
               )

@@ -7,7 +7,7 @@ import 'package:toyexchange/screen/app/model/adapter/json_object/RootJsonObject.
 import 'package:toyexchange/screen/app/model/adapter/json_object/ToyJsonObject.dart';
 import 'package:toyexchange/screen/app/model/port/ToyRepository.dart';
 import 'package:toyexchange/screen/service/AuthService.dart';
-import 'package:toyexchange/screen/service/FirebaseAuthServiceFactory.dart';
+import 'package:toyexchange/screen/service/AuthServiceFactory.dart';
 
 class HttpToyRepository implements ToyRepository {
 
