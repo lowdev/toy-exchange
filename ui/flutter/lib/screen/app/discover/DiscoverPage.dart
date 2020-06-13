@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toyexchange/screen/app/discover/widget/CustomSearchDelegate.dart';
 import 'package:toyexchange/screen/app/discover/widget/toy/ToyPage.dart';
 import 'package:toyexchange/screen/app/model/adapter/ToyRepositoryFactory.dart';
 import 'package:toyexchange/screen/app/model/port/ToyRepository.dart';
@@ -74,7 +75,12 @@ class DiscoverPageState extends State<DiscoverPage> {
     return [
       IconButton(
         icon: Icon(Icons.search),
-        onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) =>  new SearchPage())),
+        onPressed: () {
+          showSearch(
+            context: context,
+            delegate: CustomSearchDelegate(),
+          );
+        },
       ),
       PopupMenuButton<LayoutChoice>(
           icon: Icon(Icons.tune),
