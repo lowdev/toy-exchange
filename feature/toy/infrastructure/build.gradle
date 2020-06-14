@@ -3,4 +3,6 @@ dependencies {
     implementation 'org.springframework.hateoas:spring-hateoas:1.0.3.RELEASE'
     implementation 'org.springframework.security:spring-security-core:5.3.3.RELEASE'
     implementation 'com.google.firebase:firebase-admin:6.13.0'
+    implementation 'com.algolia:algoliasearch-core:3.6.1'
+    implementation 'com.algolia:algoliasearch-apache:3.6.1'
 }

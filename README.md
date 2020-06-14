@@ -20,6 +20,10 @@ This project help me to practise different techniques such as
 - CQRS
 
 I try to not use getter/setter to have a strong encapsulation (and see what happened :p)
+Why Getter and Setter break encapsulation:
+- https://stackoverflow.com/questions/34805276/do-setter-and-getter-methods-breaks-encapsulation#:~:text=Having%20getters%20and%20setters%20does%20not%20in%20itself%20break%20encapsulation.&text=The%20point%20of%20encapsulation%20is,reasonable%20policy%20for%20doing%20it.
+- https://www.javaworld.com/article/2073723/why-getter-and-setter-methods-are-evil.html
+
 
 ## Domain description
 

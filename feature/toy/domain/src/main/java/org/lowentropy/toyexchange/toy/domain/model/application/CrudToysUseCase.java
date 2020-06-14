@@ -5,9 +5,9 @@ import org.lowentropy.toyexchange.toy.domain.model.Owner;
 import org.lowentropy.toyexchange.toy.domain.model.Toy;
 import org.lowentropy.toyexchange.toy.domain.model.ToyId;
 import org.lowentropy.toyexchange.toy.domain.model.port.ToyReadRepository;
+import org.lowentropy.toyexchange.toy.domain.model.port.ToySearchIndexer;
 import org.lowentropy.toyexchange.toy.domain.model.port.ToyWriteRepository;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,10 +15,12 @@ public class CrudToysUseCase {
 
     private ToyReadRepository toyRepository;
     private ToyWriteRepository toyWriteRepository;
+    private ToySearchIndexer toySearchIndexer;
 
-    public CrudToysUseCase(ToyReadRepository toyRepository, ToyWriteRepository toyWriteRepository) {
+    public CrudToysUseCase(ToyReadRepository toyRepository, ToyWriteRepository toyWriteRepository, ToySearchIndexer toySearchIndexer) {
         this.toyRepository = toyRepository;
         this.toyWriteRepository = toyWriteRepository;
+        this.toySearchIndexer = toySearchIndexer;
     }
 
     /**
@@ -35,7 +37,9 @@ public class CrudToysUseCase {
     }
 
     public ToyId save(Toy toy) {
-        return toyWriteRepository.save(toy);
+        ToyId toyId = toyWriteRepository.save(toy);
+        toySearchIndexer.index(toy);
+        return toyId;
     }
 
     public void delete(Owner owner, ToyId toyId) {
