@@ -7,7 +7,7 @@ import './model/ActionChoice.dart';
 
 class MyToyPage extends StatefulWidget {
 
-  final ToyRepository toyRepository = ToyRepositoryFactory.getToyRepository();
+  final ToyRepository _toyRepository = ToyRepositoryFactory.getToyRepository();
   final Toy _toy;
 
   MyToyPage(this._toy) {}
@@ -21,21 +21,7 @@ class MyToyPageState extends State<MyToyPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: createBar(),
-      body: ToyDetailPage(widget._toy),
-    );
-  }
-
-  AppBar createBar() {
-    return new AppBar(
-      title: new Text(
-        widget._toy.name,
-        style: new TextStyle(
-            fontSize: 18.0,
-            fontWeight: FontWeight.bold,
-            color: Colors.black87),
-      ),
-      actions: getActions()
+      body: ToyDetailPage(widget._toy, getActions()),
     );
   }
 
@@ -73,7 +59,7 @@ class MyToyPageState extends State<MyToyPage> {
                 ),
                 FlatButton(
                   onPressed: () {
-                    widget.toyRepository.delete(widget._toy.id);
+                    widget._toyRepository.delete(widget._toy.id);
                     Navigator.of(context).pop(ConfirmAction.YES);
                   },
                   child: Text("Yes"),

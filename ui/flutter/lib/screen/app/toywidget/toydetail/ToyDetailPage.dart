@@ -5,46 +5,59 @@ import 'ToyDescription.dart';
 
 class ToyDetailPage extends StatelessWidget {
 
-  final Toy toy;
+  final Toy _toy;
+  final List<Widget> actions;
 
-  ToyDetailPage(this.toy);
+  ToyDetailPage(this._toy, this.actions);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Column(
-            children: <Widget>[
-              new Card(
-                  child: createImagePart(context)
-              ),
-              Expanded(
-                  child: new Card(
-                      child: Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: new ToyDescription("Description", this.toy.description)
-                      )
-                  )
-              )
-            ]
-        )
+    return createBody();
+  }
+
+  Widget createBody() {
+    return  CustomScrollView(
+      slivers: <Widget>[
+        SliverAppBar(
+          actions: this.actions,
+          floating: true,
+          flexibleSpace: _createImagePart(),
+          expandedHeight: 300,
+          backgroundColor: Colors.white12,
+          iconTheme: IconThemeData(
+            color: Colors.white,
+          ),
+        ),
+        // Next, create a SliverList
+        SliverList(
+          // Use a delegate to build items as they're scrolled on screen.
+          delegate: SliverChildListDelegate(
+              [
+                Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: new ToyDescription(_toy.name, _toy.description)
+                )
+              ]
+          ),
+        ),
+      ],
     );
   }
 
-  Widget createImagePart(BuildContext context) {
+  Widget _createImagePart() {
     return CarouselSlider(
-      items: this.toy.images.map((image) {
+      options: CarouselOptions(
+          viewportFraction: 1.0,
+          enlargeCenterPage: false
+      ),
+      items: _toy.images.map((image) {
         return Builder(
           builder: (BuildContext context) {
-            return Container(
-                width: MediaQuery.of(context).size.width,
-                margin: EdgeInsets.symmetric(horizontal: 5.0),
-                decoration: BoxDecoration(
-                    color: Colors.amber
-                ),
+            return Center(
                 child: new Image.network(
                   image,
                   fit: BoxFit.cover,
-                  width: 100.0,
+                  width: MediaQuery.of(context).size.width,
                 )
             );
           },
