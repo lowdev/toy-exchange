@@ -19,6 +19,13 @@ class DummyToyRepository implements ToyRepository {
         images: ["https://media.paruvendu.fr/image/puzzle-hercule/WB14/7/9/WB147985922_1.jpeg"],
         description: ""
     ));
+
+    _myToys.add(new Toy(
+        name: "Dolphin",
+        numberOfPieces: 1500,
+        images: ["https://images.fr.shopping.rakuten.com/photo/1278470910.jpg"],
+        description: ""
+    ));
   }
 
   @override

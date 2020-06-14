@@ -13,7 +13,7 @@ class HttpToyRepository implements ToyRepository {
 
   static const String LOCAL_SERVER = "http://localhost:8080";
   static const String PROD_SERVER = "https://toy-exchanging.herokuapp.com";
-  static const String SERVER = PROD_SERVER;
+  static const String SERVER = LOCAL_SERVER;
 
   final AuthService _authService = AuthServiceFactory.getAuthService();
 

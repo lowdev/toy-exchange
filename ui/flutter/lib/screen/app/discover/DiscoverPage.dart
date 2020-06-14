@@ -3,7 +3,6 @@ import 'package:toyexchange/screen/app/discover/widget/CustomSearchDelegate.dart
 import 'package:toyexchange/screen/app/discover/widget/toy/ToyPage.dart';
 import 'package:toyexchange/screen/app/model/adapter/ToyRepositoryFactory.dart';
 import 'package:toyexchange/screen/app/model/port/ToyRepository.dart';
-import 'package:toyexchange/screen/app/search/SearchPage.dart';
 import 'package:toyexchange/screen/utils/Screens.dart';
 import '../toywidget/GridToyWidget.dart';
 import 'widget/ListToyWidget.dart';
