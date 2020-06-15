@@ -45,6 +45,7 @@ class ToyDetailPage extends StatelessWidget {
   }
 
   Widget _createImagePart() {
+    print(_toy.images.length);
     return CarouselSlider(
       options: CarouselOptions(
           viewportFraction: 1.0,

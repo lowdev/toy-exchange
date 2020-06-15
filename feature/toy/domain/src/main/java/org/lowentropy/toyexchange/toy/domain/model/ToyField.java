@@ -5,5 +5,6 @@ public enum ToyField {
     TITLE,
     DESCRIPTION,
     THUMBNAIL,
-    NUMBER_OF_PIECES;
+    NUMBER_OF_PIECES,
+    OWNER;
 }

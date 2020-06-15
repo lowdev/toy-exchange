@@ -12,14 +12,12 @@ class ToysBloc {
 
   Stream<List<Toy>> get allToys => _toysFetcher.stream;
 
-  fetchAlltoys() async {
-    List<Toy> toys = await _repository.findAll();
+  search(String query) async {
+    List<Toy> toys = await _repository.find(query);
     _toysFetcher.sink.add(toys);
   }
 
   dispose() {
     _toysFetcher.close();
   }
-
-  //static bloc = ToysBloc();
 }

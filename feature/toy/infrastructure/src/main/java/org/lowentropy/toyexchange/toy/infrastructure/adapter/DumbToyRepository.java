@@ -57,6 +57,14 @@ public class DumbToyRepository implements ToyReadRepository, ToyWriteRepository 
                     .withThumbnail(new Thumbnail("https://cdn.ravensburger.de/images/produktseiten/360/14086.jpg"))
                     .withNumberOfPieces(1000)
                     .withDescription(new Description("No description"))
+                    .build(),
+            Toy.builder()
+                    .withId(new ToyId(UUID.fromString("249ea5c5-7dfc-4ec8-a543-a0ec8952b48f")))
+                    .withTitle(new Title("Puzzle 500 p - Dauphins sur le récif de corail"))
+                    .withOwner(new Owner(new Email("random@gmail.com")))
+                    .withThumbnail(new Thumbnail("https://cdn.ravensburger.de/images/produktseiten/360/14710.jpg"))
+                    .withNumberOfPieces(500)
+                    .withDescription(new Description("No description"))
                     .build()
     ));
 

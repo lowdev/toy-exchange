@@ -1,7 +1,5 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:toyexchange/screen/app/model/Toy.dart';
-import 'package:toyexchange/screen/app/toywidget/toydetail/ToyDescription.dart';
 import 'package:toyexchange/screen/app/toywidget/toydetail/ToyDetailPage.dart';
 import 'model/ToyPageChoice.dart';
 

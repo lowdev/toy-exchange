@@ -8,6 +8,9 @@ import 'package:toyexchange/screen/app/model/adapter/json_object/ToyJsonObject.d
 import 'package:toyexchange/screen/app/model/port/ToyRepository.dart';
 import 'package:toyexchange/screen/service/AuthService.dart';
 import 'package:toyexchange/screen/service/AuthServiceFactory.dart';
+import 'package:toyexchange/screen/service/indexer/IndexerService.dart';
+import 'package:toyexchange/screen/service/indexer/IndexerServiceFactory.dart';
+import 'package:toyexchange/screen/service/indexer/model/IndexerToy.dart';
 
 class HttpToyRepository implements ToyRepository {
 
@@ -16,6 +19,7 @@ class HttpToyRepository implements ToyRepository {
   static const String SERVER = LOCAL_SERVER;
 
   final AuthService _authService = AuthServiceFactory.getAuthService();
+  final IndexerService _indexerService = IndexerServiceFactory.getIndexerService();
 
   @override
   Future<List<Toy>> findAll() async {
@@ -25,6 +29,27 @@ class HttpToyRepository implements ToyRepository {
   @override
   Future<List<Toy>> findAllMyToys() async {
     return _baseFindAll(SERVER + "/me/toys");
+  }
+
+  @override
+  Future<Toy> findById(String id) async {
+    final response = await Http.get(SERVER + "/toys/" + id, headers: _generateHeader());
+    if (response.statusCode != 200) {
+      throw Exception('Failed to load toy ' + id);
+    }
+    ToyJsonObject toyJsonObject = _toToyJsonObject(response.body);
+
+    return _toToy(toyJsonObject);
+  }
+
+  @override
+  Future<List<Toy>> find(String query) async {
+    List<IndexerToy> indexerToys = await _indexerService.search(query);
+    return indexerToys.map((indexerToy) =>
+      new Toy(id: indexerToy.getId(),
+          name: indexerToy.getTitle(),
+          numberOfPieces: int.parse(indexerToy.getNumberOfPieces())))
+        .toList();
   }
 
   Future<List<Toy>> _baseFindAll(String url) async {
@@ -39,6 +64,10 @@ class HttpToyRepository implements ToyRepository {
 
   RootJsonObject _toToysJsonObject(String body) {
     return RootJsonObject.fromJson(json.decode(body));
+  }
+
+  ToyJsonObject _toToyJsonObject(String body) {
+    return ToyJsonObject.fromJson(json.decode(body));
   }
 
   List<Toy> _toToys(RootJsonObject rootJsonObject) {

@@ -84,6 +84,7 @@ public class Toy {
                 ToyField.TITLE, title.toString(),
                 ToyField.DESCRIPTION, description.toString(),
                 ToyField.THUMBNAIL, thumbnail.toString(),
-                ToyField.NUMBER_OF_PIECES, Integer.toString(numberOfPieces));
+                ToyField.NUMBER_OF_PIECES, Integer.toString(numberOfPieces),
+                ToyField.OWNER, owner.toString());
     }
 }

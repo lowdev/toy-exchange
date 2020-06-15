@@ -22,6 +22,7 @@ public class AlgoliaToySearchIndexer implements ToySearchIndexer {
         return new AlgoliaToy(
                 toy.toMap().get(ToyField.ID),
                 toy.toMap().get(ToyField.TITLE),
-                toy.toMap().get(ToyField.DESCRIPTION));
+                toy.toMap().get(ToyField.DESCRIPTION),
+                toy.toMap().get(ToyField.NUMBER_OF_PIECES));
     }
 }

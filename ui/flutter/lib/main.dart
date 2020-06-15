@@ -11,6 +11,21 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    _initFirebase();
+
+    // Using MultiProvider is convenient when providing multiple objects.
+    return  MaterialApp(
+        title: 'Puzzle exchange',
+        theme: appTheme,
+        initialRoute: '/',
+        routes: {
+          '/': (context) => LoginPage(),
+          '/discover': (context) => AppPage()
+        },
+      );
+  }
+
+  _initFirebase() {
     try {
       initializeApp(
           apiKey: "AIzaSyBKfqgXgJwJ52O-IMgjJyb1uXwvMR_PBxo",
@@ -23,16 +38,5 @@ class MyApp extends StatelessWidget {
     } catch (err) {
       // Already init
     }
-
-    // Using MultiProvider is convenient when providing multiple objects.
-    return  MaterialApp(
-        title: 'Puzzle exchange',
-        theme: appTheme,
-        initialRoute: '/',
-        routes: {
-          '/': (context) => LoginPage(),
-          '/discover': (context) => AppPage()
-        },
-      );
   }
 }

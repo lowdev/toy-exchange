@@ -4,11 +4,13 @@ public class AlgoliaToy {
     private String objectID;
     private String title;
     private String description;
+    private String numberOfPieces;
 
-    public AlgoliaToy(String toyId, String title, String description) {
+    public AlgoliaToy(String toyId, String title, String description, String numberOfPieces) {
         this.objectID = toyId;
         this.title = title;
         this.description = description;
+        this.numberOfPieces = numberOfPieces;
     }
 
     public String getObjectID() {
@@ -21,5 +23,9 @@ public class AlgoliaToy {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getNumberOfPieces() {
+        return numberOfPieces;
     }
 }

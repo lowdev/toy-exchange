@@ -1,3 +1,3 @@
 class Environment {
-  static bool isProd = false;
+  static bool isProd = true;
 }

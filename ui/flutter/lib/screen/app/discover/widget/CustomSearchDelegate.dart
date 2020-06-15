@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:toyexchange/screen/app/discover/widget/toy/ToyPage.dart';
 import 'package:toyexchange/screen/app/model/Toy.dart';
 import 'package:toyexchange/screen/app/model/ToysBloc.dart';
-
-import 'toy/ToyPage.dart';
+import 'package:toyexchange/screen/app/model/adapter/ToyRepositoryFactory.dart';
+import 'package:toyexchange/screen/app/model/port/ToyRepository.dart';
 
 class CustomSearchDelegate extends SearchDelegate {
+
+  ToyRepository _toyRepository = ToyRepositoryFactory.getToyRepository();
+
   @override
   List<Widget> buildActions(BuildContext context) {
     return [
@@ -29,6 +33,19 @@ class CustomSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
+    if (query.length == 0) {
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Center(
+            child: Text(
+              "Search Something !!!",
+            ),
+          )
+        ],
+      );
+    }
+
     if (query.length < 3) {
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -43,7 +60,7 @@ class CustomSearchDelegate extends SearchDelegate {
     }
 
     ToysBloc toysBloc = new ToysBloc();
-    toysBloc.fetchAlltoys();
+    toysBloc.search(query);
 
     return StreamBuilder(
           stream: toysBloc.allToys,
@@ -79,7 +96,10 @@ class CustomSearchDelegate extends SearchDelegate {
                 return ListTile(
                   title: Text(result.name, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18)),
                   subtitle: Text(result.numberOfPieces.toString() + " pieces"),
-                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ToyPage(result)))
+                  onTap: () {
+                    _toyRepository.findById(result.id)
+                        .then((toy) => Navigator.push(context, MaterialPageRoute(builder: (context) => ToyPage(toy))));
+                  }
                 );
               },
             );
